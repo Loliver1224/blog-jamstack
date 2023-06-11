@@ -44,6 +44,9 @@ export default function Home({ articlesApiData }: Props) {
 export const getStaticProps = async () => {
   const articlesApiData = await client.get<ArticlesApiSchema>({
     endpoint: "articles",
+    queries: {
+      limit: 3
+    },
   });
 
   return {
