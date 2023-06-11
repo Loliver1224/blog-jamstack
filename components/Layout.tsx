@@ -13,6 +13,21 @@ interface Props {
 }
 
 export default function Layout({ children }: Props) {
+  const navLinkList = [
+    {
+      path: "/",
+      name: "HOME",
+    },
+    {
+      path: "/log",
+      name: "LOG",
+    },
+    {
+      path: "/about",
+      name: "ABOUT",
+    }
+  ];
+
   return (
     <>
       <Head>
@@ -28,15 +43,13 @@ export default function Layout({ children }: Props) {
           </div>
           <nav>
             <ul className="flex flex-row list-none justify-center text-xl">
-              <li className="w-44 text-center">
-                <Link href="/">HOME</Link>
-              </li>
-              <li className="w-44 text-center">
-                <Link href="/log">LOG</Link>
-              </li>
-              <li className="w-44 text-center">
-                <Link href="/about">ABOUT</Link>
-              </li>
+              {
+                navLinkList.map((navItem) => (
+                  <li className="w-44 text-center" key={navItem.path}>
+                    <Link href={navItem.path}>{navItem.name}</Link>
+                  </li>
+                ))
+              }
             </ul>
           </nav>
         </header>
