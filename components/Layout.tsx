@@ -3,8 +3,10 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import Profile from "@/components/Profile";
 import { Noto_Sans_JP } from "next/font/google";
+import { Turret_Road } from "next/font/google"
 
 const notoJp = Noto_Sans_JP({ weight: ["400", "700"], subsets: ["latin"], variable: '--font-notojp' });
+const turrentRoad = Turret_Road({ weight: ["500"], subsets: ["latin"], variable: '--font-turretroad' });
 
 interface Props {
   children: ReactNode;
@@ -19,39 +21,39 @@ export default function Layout({ children }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className={`${notoJp.variable} font-sans`}>
-        <header className="sticky top-0 p-2 flex flex-row text-xl">
-          <div className="container mx-auto">
+      <div className={`${notoJp.variable} font-sans h-screen flex flex-col`}>
+        <header className="p-2 pb-0 border-b-4 border-indigo-600">
+          <div className={`container mx-auto text-center text-3xl logo ${turrentRoad.className}`}>
             Loliver&apos;s Tech &amp; Life Landscape
           </div>
           <nav>
-            <ul className="flex flex-row list-none justify-center">
-              <li className="w-44">
-                <Link href="/">Home</Link>
+            <ul className="flex flex-row list-none justify-center text-xl">
+              <li className="w-44 text-center">
+                <Link href="/">HOME</Link>
               </li>
-              <li className="w-44">
-                <Link href="/log">Log</Link>
+              <li className="w-44 text-center">
+                <Link href="/log">LOG</Link>
               </li>
-              <li className="w-44">
-                <Link href="/about">About</Link>
+              <li className="w-44 text-center">
+                <Link href="/about">ABOUT</Link>
               </li>
             </ul>
           </nav>
         </header>
 
-        <main className="flex justify-center">
+        <main className="flex justify-center grow bg-gradient">
           <div className="flex gap-4 flex-wrap w-10/12 lg:w-10/12 mx-6 my-4">
-            <div className="bg-gray-100 flex-auto w-2/3 p-6 rounded-md">
+            <div className="bg-white flex-auto w-2/3 p-6 rounded-md">
               {children}
             </div>
-            <div className="bg-gray-100 lg:w-[31%] w-full p-6 rounded-md">
+            <div className="bg-white lg:w-[31%] w-full p-6 rounded-md">
               <Profile />
             </div>
           </div>
         </main>
 
         <footer className="bottom-0 p-2 text-center">
-          <div className="text-white">
+          <div>
             Copyright &copy; 2023 Daichi Furukawa All Rights Reserved.
           </div>
         </footer>

@@ -8,11 +8,12 @@ interface Props {
 
 export default function Article({ articleApiData }: Props) {
   return (
-    <>
+    <article>
       <h1>{articleApiData.title}</h1>
-      <p>{articleApiData.publishedAt.split("T")[0] || ""}</p>
+      <div className="flex flex-row-reverse">{articleApiData.publishedAt.split("T")[0] || ""}</div>
+      <hr className="my-4 bg-indigo-600 h-[2px]" />
       <div dangerouslySetInnerHTML={{ __html: articleApiData.context }} />
-    </>
+    </article>
   );
 }
 
