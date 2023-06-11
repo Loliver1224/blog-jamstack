@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import { ReactNode } from 'react'
+import Profile from '@/components/Profile';
 
 interface Props {
   children: ReactNode;
@@ -46,7 +47,7 @@ export default function Layout({ children }: Props) {
             { children }
           </div>
           <div className="bg-gray-100 lg:w-[31%] w-full p-6 rounded-md">
-            Sidebar
+            <Profile />
           </div>
         </div>
       </main>
