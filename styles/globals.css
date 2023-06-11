@@ -33,7 +33,7 @@ h1, h2 {
   @apply text-white
 }
 
-h2 {
+h1, h2 {
   padding: 20px;
   margin-bottom: 1.26em;
   @apply text-2xl font-bold
