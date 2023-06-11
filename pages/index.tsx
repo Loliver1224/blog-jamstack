@@ -11,32 +11,37 @@ interface Props {
 export default function Home({ articlesApiData }: Props) {
   return (
     <>
-      <h2 className="text-2xl font-bold">新着記事</h2>
-      {articlesApiData.contents.map((content) => (
-        <Link href={"/articles/" + content.id} key={content.id}>
-          <div className="bg-white flex flex-row gap-2 my-4 p-4 border rounded-md shadow-md">
-            <div className="w-1/4">
+      <h2 className="text-2xl font-bold mb-4">新着記事</h2>
+      <div className="flex flex-row flex-wrap gap-6 justify-between max-md:justify-around">
+        {articlesApiData.contents.map((content) => (
+          <div
+            className=" bg-white border border-gray-200 rounded-lg shadow w-72"
+            key={content.id}
+          >
+            <Link href={"/articles/" + content.id}>
               <Image
                 src={content.eyecatch.url}
                 alt="サムネイル"
-                width={content.eyecatch.width}
-                height={content.eyecatch.height}
+                width="320"
+                height="180"
+                className="rounded-t-lg object-cover h-32 w-96"
               />
-            </div>
-            <div className="flex-auto">
-              <h3
-                className="text-xl"
-                dangerouslySetInnerHTML={{ __html: content.title }}
-              />
-              <div className="flex flex-row items-center justify-end text-gray-600">
-                <HiOutlineClock className="h-4 w-4" />
-                {content.publishedAt.split("T")[0] || ''}
-                <br />
+              <div className="p-5">
+                <div
+                  className="mb-2 text-xl font-bold tracking-tight text-gray-900"
+                  dangerouslySetInnerHTML={{
+                    __html: content.title,
+                  }}
+                ></div>
+                <div className="flex flex-row items-center">
+                  <HiOutlineClock className="h-4 w-4" />
+                  {content.publishedAt.split("T")[0] || ""}
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
-        </Link>
-      ))}
+        ))}
+      </div>
     </>
   );
 }
@@ -45,7 +50,7 @@ export const getStaticProps = async () => {
   const articlesApiData = await client.get<ArticlesApiSchema>({
     endpoint: "articles",
     queries: {
-      limit: 3
+      limit: 3,
     },
   });
 
