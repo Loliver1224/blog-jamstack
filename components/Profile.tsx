@@ -6,8 +6,8 @@ import { SiFeedly } from "react-icons/si";
 export default function Profile() {
   return (
     <aside>
-      <h3>プロフィール</h3>
-      <div className="text-center border border-indigo-900 rounded p-5">
+      <h3 className="text-xl border-b-2 border-indigo-600">Profile</h3>
+      <div className="text-center border border-indigo-600 rounded p-5">
         <figure className="mx-auto w-max">
           <Image
             src="/favicon.png"
@@ -29,27 +29,27 @@ export default function Profile() {
           <div className="flex justify-center gap-2">
             <Link
               href="https://twitter.con/Lolitta_river"
-              className="border rounded border-indigo-900 p-0.5"
+              className="border rounded border-indigo-600 p-0.5"
             >
-              <FaTwitter />
+              <FaTwitter color="#4F46E5" />
             </Link>
             <Link
               href="https://loliver.hatenablog.jp/"
-              className="border rounded border-indigo-900 p-0.5"
+              className="border rounded border-indigo-600 p-0.5"
             >
-              <FaPenNib />
+              <FaPenNib color="#4F46E5" />
             </Link>
             <Link
               href="https://github.com/Loliver1224"
-              className="border rounded border-indigo-900 p-0.5"
+              className="border rounded border-indigo-600 p-0.5"
             >
-              <FaGithub />
+              <FaGithub color="#4F46E5" />
             </Link>
             <Link
               href="https://feedly.com/i/discover/sources/search/feed/https%3A%2F%2Fblog.loliver.net"
-              className="border rounded border-indigo-900 p-0.5"
+              className="border rounded border-indigo-600 p-0.5"
             >
-              <SiFeedly />
+              <SiFeedly color="#4F46E5" />
             </Link>
           </div>
         </div>
