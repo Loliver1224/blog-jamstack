@@ -39,6 +39,16 @@ h2 {
   @apply text-2xl font-bold
 }
 
+aside h3 {
+  background-color: #504d46;
+  border-left: 5px solid #e6b222;
+  padding: 12px;
+  margin-bottom: 16px;
+  @apply text-white;
+  @apply text-lg;
+  @apply font-bold;
+}
+
 article p, article pre, article .information-box {
   @apply mb-[1.4rem]
 }

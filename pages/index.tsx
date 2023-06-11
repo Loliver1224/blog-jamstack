@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ClockIcon } from "@heroicons/react/24/outline";
+import { HiOutlineClock } from "react-icons/hi";
 import { client } from "@/lib/client";
 import { ArticlesApiSchema } from "@/types/api";
 
@@ -29,7 +29,7 @@ export default function Home({ articlesApiData }: Props) {
                 dangerouslySetInnerHTML={{ __html: content.title }}
               />
               <div className="flex flex-row items-center justify-end text-gray-600">
-                <ClockIcon className="h-4 w-4" />
+                <HiOutlineClock className="h-4 w-4" />
                 {content.publishedAt.split("T")[0] || ''}
                 <br />
               </div>
