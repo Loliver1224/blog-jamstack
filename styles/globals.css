@@ -43,7 +43,7 @@ aside h3 {
   background-color: #504d46;
   border-left: 5px solid #e6b222;
   padding: 12px;
-  margin: 16px 0;
+  margin-bottom: 16px;
   @apply text-white;
   @apply text-lg;
   @apply font-bold;

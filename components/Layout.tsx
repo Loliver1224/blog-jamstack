@@ -28,8 +28,8 @@ export default function Layout({ children }: Props) {
               </a>
             </li>
             <li className="w-44">
-              <Link href="/memories">
-                Memories
+              <Link href="/log">
+                Log
               </Link>
             </li>
             <li className="w-44">
