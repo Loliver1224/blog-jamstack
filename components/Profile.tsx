@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FaTwitter, FaGithub, FaPenNib } from "react-icons/fa";
 import { SiFeedly } from "react-icons/si";
@@ -6,10 +5,10 @@ import { SiFeedly } from "react-icons/si";
 export default function Profile() {
   return (
     <aside>
-      <h3 className="text-xl border-b-2 border-indigo-600">Profile</h3>
+      <h3 className="text-xl border-b-2 border-indigo-600 mt-0 pt-0">Profile</h3>
       <div className="text-center border border-indigo-600 rounded p-5">
         <figure className="mx-auto w-max">
-          <Image
+          <img
             src="/favicon.png"
             alt="avatar"
             width="100"
@@ -19,13 +18,15 @@ export default function Profile() {
         </figure>
         <div className="p-4">
           <div className="text-xl">Loliver</div>
-          <p className="text-left mb-2">
-            熊本の高専卒
-            <br />
-            毎週金曜はやる気・元気・無敵になる涼風青葉
-            <br />
-            ブログ活動もアイカツ！
-          </p>
+          <div className="flex justify-center">
+            <p className="text-left mb-2">
+              熊本の高専卒
+              <br />
+              毎週金曜はやる気・元気・無敵になる涼風青葉
+              <br />
+              ブログ活動もアイカツ！
+            </p>
+          </div>
           <div className="flex justify-center gap-2">
             <Link
               href="https://twitter.con/Lolitta_river"

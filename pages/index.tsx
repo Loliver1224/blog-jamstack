@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { HiOutlineClock } from "react-icons/hi";
 import { client } from "@/lib/client";
 import { ArticlesApiSchema } from "@/types/api";
@@ -19,7 +18,7 @@ export default function Home({ articlesApiData }: Props) {
             key={content.id}
           >
             <Link href={"/articles/" + content.id}>
-              <Image
+              <img
                 src={content.eyecatch.url}
                 alt="サムネイル"
                 width="320"
