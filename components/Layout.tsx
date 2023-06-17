@@ -56,8 +56,10 @@ export default function Layout({ children }: Props) {
 
         <main className="flex justify-center grow bg-gradient">
           <div className="flex gap-4 flex-wrap w-[1300px] mx-auto my-4">
-            <div className="bg-white flex-auto p-6 rounded-md">{children}</div>
-            <div className="w-80 grow">
+            <div className="bg-white flex-auto p-6 xl:max-w-[960px] rounded-md">
+              {children}
+            </div>
+            <div className="xl:w-80 grow">
               <div className="bg-white rounded-md p-6">
                 <Profile />
               </div>
