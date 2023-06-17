@@ -38,37 +38,38 @@ export default function Layout({ children }: Props) {
       </Head>
       <div className={`${notoJp.variable} font-sans h-screen flex flex-col`}>
         <header className="p-2 pb-0 border-b-4 border-indigo-600">
-          <div className={`container mx-auto text-center text-3xl logo ${turrentRoad.className}`}>
+          <div
+            className={`container mx-auto text-center text-3xl logo ${turrentRoad.className}`}
+          >
             Loliver&apos;s Tech &amp; Life Landscape
           </div>
           <nav>
             <ul className="flex flex-row list-none justify-center text-xl">
-              {
-                navLinkList.map((navItem) => (
-                  <li className="w-44 text-center" key={navItem.path}>
-                    <Link href={navItem.path}>{navItem.name}</Link>
-                  </li>
-                ))
-              }
+              {navLinkList.map((navItem) => (
+                <li className="w-44 text-center nav-li" key={navItem.path}>
+                  <Link
+                    href={navItem.path}
+                    className="no-underline decoration-inherit link-spread"
+                  >
+                    {navItem.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </header>
 
         <main className="flex justify-center grow bg-gradient">
-          <div className="flex gap-4 flex-wrap w-10/12 lg:w-10/12 mx-6 my-4">
-            <div className="bg-white flex-auto w-2/3 p-6 rounded-md">
-              {children}
-            </div>
-            <div className="bg-white lg:w-[31%] w-full p-6 rounded-md">
+          <div className="flex gap-4 flex-wrap w-[1200px] mx-auto my-4">
+            <div className="bg-white flex-auto p-6 rounded-md">{children}</div>
+            <div className="bg-white w-80 grow p-6 rounded-md">
               <Profile />
             </div>
           </div>
         </main>
 
         <footer className="bottom-0 p-2 text-center">
-          <div>
-            Copyright &copy; 2023 Daichi Furukawa All Rights Reserved.
-          </div>
+          <div>Copyright &copy; 2023 Daichi Furukawa All Rights Reserved.</div>
         </footer>
       </div>
     </>

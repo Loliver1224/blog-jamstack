@@ -4,6 +4,8 @@ import { HiOutlineClock } from "react-icons/hi";
 import { client } from "@/lib/client";
 import { ArticlesApiSchema } from "@/types/api";
 
+export const config = { amp: true };
+
 interface Props {
   articlesApiData: ArticlesApiSchema;
 }
@@ -18,13 +20,13 @@ export default function Home({ articlesApiData }: Props) {
             className=" bg-white border border-gray-200 rounded-lg shadow w-72"
             key={content.id}
           >
-            <Link href={"/articles/" + content.id}>
+            <Link href={"/articles/" + content.id} className="no-underline">
               <Image
                 src={content.eyecatch.url}
                 alt="サムネイル"
                 width="320"
                 height="180"
-                className="rounded-t-lg object-cover h-32 w-96"
+                className="rounded-t-lg object-cover h-40 w-72"
               />
               <div className="p-5">
                 <div
@@ -33,7 +35,7 @@ export default function Home({ articlesApiData }: Props) {
                     __html: content.title,
                   }}
                 ></div>
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center text-gray-600">
                   <HiOutlineClock className="h-4 w-4" />
                   {content.publishedAt.split("T")[0] || ""}
                 </div>

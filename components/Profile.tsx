@@ -19,35 +19,37 @@ export default function Profile() {
         </figure>
         <div className="p-4">
           <div className="text-xl">Loliver</div>
-          <p className="text-left mb-2">
-            熊本の高専卒
-            <br />
-            毎週金曜はやる気・元気・無敵になる涼風青葉
-            <br />
-            ブログ活動もアイカツ！
-          </p>
+          <div className="flex justify-center">
+            <p className="text-left mb-2">
+              熊本の高専卒
+              <br />
+              毎週金曜はやる気・元気・無敵になる涼風青葉
+              <br />
+              ブログ活動もアイカツ！
+            </p>
+          </div>
           <div className="flex justify-center gap-2">
             <Link
               href="https://twitter.con/Lolitta_river"
-              className="border rounded border-indigo-600 p-0.5"
+              className="border rounded border-indigo-600 p-0.5 h-6 w-6"
             >
               <FaTwitter color="#4F46E5" />
             </Link>
             <Link
               href="https://loliver.hatenablog.jp/"
-              className="border rounded border-indigo-600 p-0.5"
+              className="border rounded border-indigo-600 p-0.5 h-6 w-6"
             >
               <FaPenNib color="#4F46E5" />
             </Link>
             <Link
               href="https://github.com/Loliver1224"
-              className="border rounded border-indigo-600 p-0.5"
+              className="border rounded border-indigo-600 p-0.5 h-6 w-6"
             >
               <FaGithub color="#4F46E5" />
             </Link>
             <Link
               href="https://feedly.com/i/discover/sources/search/feed/https%3A%2F%2Fblog.loliver.net"
-              className="border rounded border-indigo-600 p-0.5"
+              className="border rounded border-indigo-600 p-0.5 h-6 w-6"
             >
               <SiFeedly color="#4F46E5" />
             </Link>
