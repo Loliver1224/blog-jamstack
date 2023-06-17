@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FaTwitter, FaGithub, FaPenNib } from "react-icons/fa";
 import { SiFeedly } from "react-icons/si";
@@ -9,7 +8,7 @@ export default function Profile() {
       <h3 className="text-xl border-b-2 border-indigo-600 mt-0 pt-0">Profile</h3>
       <div className="text-center border border-indigo-600 rounded p-5">
         <figure className="mx-auto w-max">
-          <Image
+          <img
             src="/favicon.png"
             alt="avatar"
             width="100"
