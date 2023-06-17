@@ -10,7 +10,9 @@ export default function Article({ articleApiData }: Props) {
   return (
     <article>
       <h1>{articleApiData.title}</h1>
-      <div className="flex flex-row-reverse">{articleApiData.publishedAt.split("T")[0] || ""}</div>
+      <div className="flex flex-row-reverse">
+        {articleApiData.publishedAt.split("T")[0] || ""}
+      </div>
       <hr className="my-4 bg-indigo-600 h-[2px]" />
       <div dangerouslySetInnerHTML={{ __html: articleApiData.context }} />
     </article>
@@ -43,6 +45,6 @@ export const getStaticPaths = async () => {
   const paths = data.contents.map((content) => `/articles/${content.id}`);
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 };
