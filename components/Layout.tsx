@@ -55,12 +55,12 @@ export default function Layout({ children }: Props) {
         </header>
 
         <main className="flex justify-center grow bg-gradient">
-          <div className="flex gap-4 flex-wrap w-10/12 lg:w-10/12 mx-6 my-4">
-            <div className="bg-white flex-auto w-2/3 p-6 rounded-md">
-              {children}
-            </div>
-            <div className="bg-white lg:w-[31%] w-full p-6 rounded-md">
-              <Profile />
+          <div className="flex gap-4 flex-wrap w-[1300px] mx-auto my-4">
+            <div className="bg-white flex-auto p-6 rounded-md">{children}</div>
+            <div className="w-80 grow">
+              <div className="bg-white rounded-md p-6">
+                <Profile />
+              </div>
             </div>
           </div>
         </main>
