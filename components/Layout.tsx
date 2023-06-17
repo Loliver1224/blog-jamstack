@@ -3,10 +3,18 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import Profile from "@/components/Profile";
 import { Noto_Sans_JP } from "next/font/google";
-import { Turret_Road } from "next/font/google"
+import { Turret_Road } from "next/font/google";
 
-const notoJp = Noto_Sans_JP({ weight: ["400", "700"], subsets: ["latin"], variable: '--font-notojp' });
-const turrentRoad = Turret_Road({ weight: ["500"], subsets: ["latin"], variable: '--font-turretroad' });
+const notoJp = Noto_Sans_JP({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-notojp",
+});
+const turrentRoad = Turret_Road({
+  weight: ["500"],
+  subsets: ["latin"],
+  variable: "--font-turretroad",
+});
 
 interface Props {
   children: ReactNode;
@@ -25,7 +33,7 @@ export default function Layout({ children }: Props) {
     {
       path: "/about",
       name: "ABOUT",
-    }
+    },
   ];
 
   return (
@@ -38,18 +46,18 @@ export default function Layout({ children }: Props) {
       </Head>
       <div className={`${notoJp.variable} font-sans h-screen flex flex-col`}>
         <header className="p-2 pb-0 border-b-4 border-indigo-600">
-          <div className={`container mx-auto text-center text-3xl logo ${turrentRoad.className}`}>
+          <div
+            className={`container mx-auto text-center text-3xl logo ${turrentRoad.className}`}
+          >
             Loliver&apos;s Tech &amp; Life Landscape
           </div>
           <nav>
             <ul className="flex flex-row list-none justify-center text-xl">
-              {
-                navLinkList.map((navItem) => (
-                  <li className="w-44 text-center" key={navItem.path}>
-                    <Link href={navItem.path}>{navItem.name}</Link>
-                  </li>
-                ))
-              }
+              {navLinkList.map((navItem) => (
+                <li className="w-44 text-center" key={navItem.path}>
+                  <Link href={navItem.path}>{navItem.name}</Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </header>
@@ -68,9 +76,7 @@ export default function Layout({ children }: Props) {
         </main>
 
         <footer className="bottom-0 p-2 text-center">
-          <div>
-            Copyright &copy; 2023 Daichi Furukawa All Rights Reserved.
-          </div>
+          <div>Copyright &copy; 2023 Daichi Furukawa All Rights Reserved.</div>
         </footer>
       </div>
     </>
