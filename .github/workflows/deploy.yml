@@ -22,7 +22,7 @@ jobs:
         run: yarn install
 
       - name: Create env file
-      - shell: bash
+        shell: bash
         run: |
           touch .env
           echo "SERVICE_DOMAIN=${{ secrets.CMS_SERVICE_DOMAIN }}" >> .env
