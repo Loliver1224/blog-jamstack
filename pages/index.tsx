@@ -41,6 +41,11 @@ export default function Home({ articlesApiData }: Props) {
           </div>
         ))}
       </div>
+
+      <h2 className="text-2xl font-bold my-4">人気記事</h2>
+      <div className="flex flex-row flex-wrap gap-6 justify-start max-md:justify-around">
+        開発中
+      </div>
     </>
   );
 }
