@@ -21,6 +21,13 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
+      - name: Create env file
+      - shell: bash
+        run: |
+          touch .env
+          echo "SERVICE_DOMAIN=${{ secrets.CMS_SERVICE_DOMAIN }}" >> .env
+          echo "API_KEY=${{ secrets.CMS_API_KEY }}" >> .env
+
       - name: Build
         run: yarn build
 
