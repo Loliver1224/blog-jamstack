@@ -109,4 +109,12 @@ article ul {
   @apply pl-6;
   @apply mb-4;
 }
+
+pre {
+  @apply whitespace-pre-wrap;
+}
+
+code {
+  @apply break-words;
+}
 /** --------- */

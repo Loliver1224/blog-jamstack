@@ -31,7 +31,7 @@ export default function Profile() {
           </div>
           <div className="flex justify-center gap-2">
             <Link
-              href="https://twitter.con/Lolitta_river"
+              href="https://twitter.com/Lolitta_river"
               className="border rounded border-indigo-600 p-0.5"
             >
               <FaTwitter color="#4F46E5" />
