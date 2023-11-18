@@ -1,0 +1,17 @@
+---
+const today = new Date()
+---
+
+<footer class="bottom-0 p-2 text-center bg-white footer">
+  &copy; {today.getFullYear()} Daichi Furukawa. All rights reserved.
+</footer>
+<style>
+  :global(.darkmode footer) {
+    background-color: #1d1d29;
+    color: white;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+</style>
