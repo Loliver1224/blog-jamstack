@@ -1,5 +1,11 @@
 {
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/loliver/Projects/blog-jamstack/.github/workflows/deploy.yml"
-    }
+  "editor.formatOnSave": true,
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "[astro]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

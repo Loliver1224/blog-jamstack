@@ -1,0 +1,27 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { getAllArticles, getArticleDetail } from "@/lib/client"
+
+export async function getStaticPaths() {
+  const response = await getAllArticles({ fields: ["id"] })
+  return response.contents.map((content) => ({
+    params: {
+      articleId: content.id,
+    },
+  }))
+}
+
+const { articleId } = Astro.params
+const articleDetail = await getArticleDetail(articleId!)
+---
+
+<Layout>
+  <article>
+    <h1>{articleDetail.title}</h1>
+    <div class="flex flex-row-reverse">
+      {articleDetail.publishedAt?.split("T")[0] || ""}
+    </div>
+    <hr class="my-4 bg-indigo-600 h-[2px]" />
+    <div set:html={articleDetail.context} />
+  </article>
+</Layout>

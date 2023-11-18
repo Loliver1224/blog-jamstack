@@ -1,0 +1,82 @@
+---
+import BaseHead from "@/components/BaseHead.astro"
+import Navigation from "@/components/Navigation.astro"
+import Profile from "@/components/Profile.astro"
+import Footer from "@/components/Footer.astro"
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts"
+---
+
+<html lang="ja">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="bg-gradient">
+    <div class="font-sans h-screen grid-container">
+      <Navigation />
+
+      <div class="spacer-l"></div>
+
+      <div class="main p-6 rounded-md">
+        <div class="">
+          <slot />
+        </div>
+      </div>
+      <div class="sidebar p-6 rounded-md">
+        <Profile />
+      </div>
+
+      <div class="spacer-r"></div>
+
+      <div class="spacer-b"></div>
+
+      <Footer />
+    </div>
+    <style>
+      .grid-container {
+        display: grid;
+        /* gap: 16px; */
+        grid-template-areas:
+          "header header header header"
+          "ml main sidebar mr"
+          "mb mb mb mb"
+          "footer footer footer footer";
+        grid-template-rows: 80px auto auto 40px;
+        grid-template-columns: auto minmax(448px, 1024px) 320px auto;
+      }
+
+      @media screen and (max-width: 768px) {
+        .grid-container {
+          grid-template-areas:
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+          grid-template-rows: 80px auto auto 200px;
+          grid-template-columns: auto;
+        }
+      }
+
+      .main {
+        grid-area: main;
+        margin: 12px;
+      }
+
+      .sidebar {
+        grid-area: sidebar;
+        margin: 12px;
+      }
+
+      .spacer-l {
+        grid-area: ml;
+      }
+
+      .spacer-r {
+        grid-area: mr;
+      }
+
+      .spacer-b {
+        grid-area: mb;
+      }
+    </style>
+  </body>
+</html>
