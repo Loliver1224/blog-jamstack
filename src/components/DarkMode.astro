@@ -30,4 +30,14 @@
     const isEnabledDarkMode = document.body.classList.contains("darkmode")
     !isEnabledDarkMode ? enableDarkMode() : disableDarkMode()
   })
+
+  // View Transition後の設定再読み込み
+  document.addEventListener("astro:after-swap", () => {
+    darkMode = localStorage.getItem("darkMode")
+    if (darkMode === "enabled") {
+      enableDarkMode()
+    } else {
+      disableDarkMode()
+    }
+  })
 </script>
