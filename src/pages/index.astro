@@ -8,13 +8,6 @@ import { getAllArticles } from "@/lib/client"
 const articlesApiData = await getAllArticles({ limit: 3 })
 ---
 
-<style>
-  [astro-icon="mdi:clock-outline"] {
-    height: 16px;
-    width: 16px;
-  }
-</style>
-
 <Layout>
   <main>
     <h2 class="text-2xl font-bold mb-4">新着記事</h2>

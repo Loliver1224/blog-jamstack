@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro"
 import { getAllArticles, getArticleDetail } from "@/lib/client"
 
+import { Icon } from "astro-icon"
 import hljs from "highlight.js"
 import type { HighlightResult } from "highlight.js"
 import { load } from "cheerio"
@@ -53,8 +54,9 @@ articleDetail.context = cheerioObj.html()
 <Layout>
   <article>
     <h1>{articleDetail.title}</h1>
-    <div class="flex flex-row-reverse">
+    <div class="flex flex-row-reverse items-center">
       {articleDetail.publishedAt?.split("T")[0] || ""}
+      <Icon name="mdi:clock-outline" />
     </div>
     <hr class="my-4 bg-indigo-600 h-[2px]" />
     <div set:html={articleDetail.context} />
