@@ -128,7 +128,7 @@ blockquote {
 }
 
 .darkmode .logo {
-	background: radial-gradient(
+  background: radial-gradient(
     at 50% 20%,
     rgba(67, 194, 255, 1),
     rgba(39, 70, 214, 1) 22%,
@@ -157,7 +157,9 @@ blockquote {
 }
 
 nav li {
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
 }
 
 nav li:hover {
@@ -178,21 +180,57 @@ aside h3 {
 }
 
 .sidebar {
-	@apply bg-white;
+  @apply bg-white;
 }
 
 .darkmode .sidebar {
-	@apply bg-gray-900;
-	@apply text-white;
+  @apply bg-gray-900;
+  @apply text-white;
 }
 
 .main {
-	@apply bg-white;
+  @apply bg-white;
 }
 
 .darkmode .main {
-	@apply bg-gray-900;
-	@apply text-white;
+  @apply bg-gray-900;
+  @apply text-white;
+}
+
+/** --- アイコンスタイル --- */
+[astro-icon] {
+  height: 16px;
+  width: 16px;
+}
+
+/** --- コードブロックスタイル --- */
+pre {
+  overflow-x: auto;
+  margin-top: 16px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+}
+
+div[data-filename] {
+  margin-top: 16px;
+}
+
+div[data-filename] > span {
+  display: inline-block;
+  background-color: #dfdfdf;
+  text-align: center;
+  padding: 3px 15px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+div[data-filename] > pre {
+  margin-top: 0px;
+  border-top-left-radius: 0px;
+}
+
+.darkmode div[data-filename] > span {
+  background-color: #666;
+  color: white;
 }
 
 /** --- 記事本文スタイル --- */
