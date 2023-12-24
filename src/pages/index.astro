@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets"
 import { Icon } from "astro-icon"
+import avatarImg from "@/images/avatar.png"
 
 import Layout from "@/layouts/Layout.astro"
 import { getAllArticles } from "@/lib/client"
@@ -18,13 +19,23 @@ const articlesApiData = await getAllArticles({ limit: 3 })
         articlesApiData.contents.map((content) => (
           <div class="card w-72">
             <a href={"/archive/" + content.id}>
-              <Image
-                src={content.eyecatch.url}
-                alt="サムネイル"
-                width="320"
-                height="180"
-                class="rounded-t-lg object-cover h-32 w-96"
-              />
+              {content.eyecatch ? (
+                <Image
+                  src={content.eyecatch.url}
+                  alt="サムネイル"
+                  width="320"
+                  height="180"
+                  class="rounded-t-lg object-cover h-32 w-96"
+                />
+              ) : (
+                <Image
+                  src={avatarImg}
+                  alt="サムネイル"
+                  width="320"
+                  height="180"
+                  class="rounded-t-lg object-cover h-32 w-96"
+                />
+              )}
               <div class="p-5">
                 <div class="mb-2 text-xl font-bold tracking-tight">
                   {content.title}

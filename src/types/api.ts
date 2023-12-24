@@ -13,11 +13,19 @@ export interface SubcategoryApiSchema extends MicroCMSDate {
   }
 }
 
+export interface ContentApiSchema {
+  fieldId: "html" | "richEditor"
+  html?: string
+  richEditor?: string
+}
+
 export interface ArticleApiSchema extends MicroCMSDate {
   id: string
   title: string
-  context: string
-  eyecatch: MicroCMSImage
+  // TODO: content一本化したらcontext定義削除してcontent必須化
+  context?: string
+  content?: ContentApiSchema[]
+  eyecatch?: MicroCMSImage
   category: CategoryApiSchema
   subcategory: SubcategoryApiSchema
 }
