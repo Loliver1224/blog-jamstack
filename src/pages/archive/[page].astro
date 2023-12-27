@@ -1,19 +1,30 @@
 ---
+import type { GetStaticPathsOptions } from "astro"
 import { Icon } from "astro-icon"
 
 import Layout from "@/layouts/Layout.astro"
 import Eyecatch from "@/components/Eyecatch.astro"
-import { getAllArticles } from "@/lib/client"
+import { getAllArticlesDetail } from "@/lib/client"
+import type { ArticleApiSchema } from "@/types/api"
 
-const articlesApiData = await getAllArticles()
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const articlesApiData = await getAllArticlesDetail({
+    fields: ["id", "eyecatch", "title", "publishedAt"],
+  })
+  return paginate(articlesApiData, { pageSize: 6 })
+}
+
+const { page } = Astro.props
 ---
 
 <Layout>
   <main>
-    <h2 class="text-2xl font-bold mb-4">記事一覧</h2>
+    <h2 class="text-2xl font-bold mb-4">
+      記事一覧 ({page.currentPage}/{page.lastPage})
+    </h2>
     <div class="flex flex-row flex-wrap gap-6 justify-around">
       {
-        articlesApiData.contents.map((content) => (
+        page.data.map((content: ArticleApiSchema) => (
           <div class="card w-72">
             <a href={"/archive/" + content.id}>
               <Eyecatch image={content.eyecatch?.url} />
@@ -30,6 +41,11 @@ const articlesApiData = await getAllArticles()
           </div>
         ))
       }
+    </div>
+    <!-- TODO: スタイル -->
+    <div class="flex flex-row justify-center">
+      {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+      {page.url.next ? <a href={page.url.next}>Next</a> : null}
     </div>
   </main>
 </Layout>

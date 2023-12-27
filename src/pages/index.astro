@@ -5,7 +5,10 @@ import Layout from "@/layouts/Layout.astro"
 import Eyecatch from "@/components/Eyecatch.astro"
 import { getAllArticles } from "@/lib/client"
 
-const articlesApiData = await getAllArticles({ limit: 3 })
+const articlesApiData = await getAllArticles({
+  limit: 3,
+  fields: ["id", "eyecatch", "title", "publishedAt"],
+})
 ---
 
 <Layout>
