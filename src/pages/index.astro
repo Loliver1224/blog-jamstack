@@ -8,6 +8,7 @@ import { getAllArticles } from "@/lib/client"
 const articlesApiData = await getAllArticles({
   limit: 3,
   fields: ["id", "eyecatch", "title", "publishedAt"],
+  orders: "-publishedAt",
 })
 ---
 
