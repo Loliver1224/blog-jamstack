@@ -10,6 +10,7 @@ import type { ArticleApiSchema } from "@/types/api"
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const articlesApiData = await getAllArticlesDetail({
     fields: ["id", "eyecatch", "title", "publishedAt"],
+    orders: "-publishedAt",
   })
   return paginate(articlesApiData, { pageSize: 6 })
 }
