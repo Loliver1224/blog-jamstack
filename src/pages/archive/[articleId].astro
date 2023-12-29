@@ -1,14 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import { getAllArticles, getArticleDetail } from "@/lib/client"
+import { getAllArticlesDetail, getArticleDetail } from "@/lib/client"
 
 import { Icon } from "astro-icon"
 import { applySyntaxHighlighting } from "@/utils/highlight"
 import "highlight.js/styles/atom-one-dark.min.css"
 
 export async function getStaticPaths() {
-  const response = await getAllArticles({ fields: ["id"] })
-  return response.contents.map((content) => ({
+  const response = await getAllArticlesDetail({ fields: ["id"] })
+  return response.map((content) => ({
     params: {
       articleId: content.id,
     },

@@ -14,6 +14,13 @@ export const getAllArticles = async (queries?: MicroCMSQueries) => {
   })
 }
 
+export const getAllArticlesDetail = async (queries?: MicroCMSQueries) => {
+  return await client.getAllContents<ArticleApiSchema>({
+    endpoint: "articles",
+    queries,
+  })
+}
+
 export const getArticleDetail = async (
   contentId: string,
   queries?: MicroCMSQueries,
