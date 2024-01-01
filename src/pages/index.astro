@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon"
+
+import Layout from "@/layouts/Layout.astro"
+import Eyecatch from "@/components/Eyecatch.astro"
+import Ad from "@/components/Ad.astro"
+import { getAllArticles } from "@/lib/client"
+
+const articlesApiData = await getAllArticles({
+  limit: 3,
+  fields: ["id", "eyecatch", "title", "publishedAt"],
+  orders: "-publishedAt",
+})
+---
+
+<Layout>
+  <main>
+    <h2 class="text-2xl font-bold mb-4">新着記事</h2>
+    <div
+      class="flex flex-row flex-wrap gap-6 justify-between max-[1304px]:justify-around"
+    >
+      {
+        articlesApiData.contents.map((content) => (
+          <div class="card w-72">
+            <a href={"/archive/" + content.id}>
+              <Eyecatch image={content.eyecatch?.url} />
+              <div class="p-5">
+                <div class="mb-2 text-xl font-bold tracking-tight">
+                  {content.title}
+                </div>
+                <div class="flex flex-row items-center">
+                  <Icon name="mdi:clock-outline" />
+                  {content.publishedAt?.split("T")[0] || ""}
+                </div>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    <Ad />
+
+    <h2 class="text-2xl font-bold my-4">人気記事</h2>
+    <div
+      class="flex flex-row flex-wrap gap-6 justify-start max-md:justify-around"
+    >
+      開発中
+    </div>
+  </main>
+</Layout>

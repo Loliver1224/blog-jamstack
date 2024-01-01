@@ -1,0 +1,51 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { getAllArticlesDetail, getArticleDetail } from "@/lib/client"
+
+import { Icon } from "astro-icon"
+import { applySyntaxHighlighting } from "@/utils/highlight"
+import "highlight.js/styles/atom-one-dark.min.css"
+import Ad from "@/components/Ad.astro"
+
+export async function getStaticPaths() {
+  const response = await getAllArticlesDetail({ fields: ["id"] })
+  return response.map((content) => ({
+    params: {
+      articleId: content.id,
+    },
+  }))
+}
+
+const { articleId } = Astro.params
+const articleDetail = await getArticleDetail(articleId!)
+
+// TODO: context -> content移行までの仮措置
+let articleContent = ""
+if (articleDetail.context) {
+  articleContent = applySyntaxHighlighting(articleDetail.context)
+} else {
+  articleDetail.content?.forEach((content) => {
+    const fieldType = content.fieldId
+    // TODO: もっと良いアクセス方法
+    const contentData = content[fieldType]
+    articleContent += applySyntaxHighlighting(contentData ?? "")
+  })
+}
+---
+
+<Layout
+  pageName={articleDetail.title}
+  description={articleContent}
+  image={articleDetail.eyecatch?.url}
+>
+  <article>
+    <h1>{articleDetail.title}</h1>
+    <div class="flex flex-row-reverse items-center">
+      {articleDetail.publishedAt?.split("T")[0] || ""}
+      <Icon name="mdi:clock-outline" />
+    </div>
+    <hr class="my-4 bg-indigo-600 h-[2px]" />
+    <div set:html={articleContent} />
+    <Ad />
+  </article>
+</Layout>

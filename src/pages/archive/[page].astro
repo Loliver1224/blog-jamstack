@@ -1,0 +1,111 @@
+---
+import type { GetStaticPathsOptions } from "astro"
+import { Icon } from "astro-icon"
+
+import Layout from "@/layouts/Layout.astro"
+import Eyecatch from "@/components/Eyecatch.astro"
+import { getAllArticlesDetail } from "@/lib/client"
+import type { ArticleApiSchema } from "@/types/api"
+import Ad from "@/components/Ad.astro"
+
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const articlesApiData = await getAllArticlesDetail({
+    fields: ["id", "eyecatch", "title", "publishedAt"],
+    orders: "-publishedAt",
+  })
+  return paginate(articlesApiData, { pageSize: 6 })
+}
+
+const { page } = Astro.props
+
+// ページネーション
+// 現在±2ページ+先頭or最終ページへのリンクを作成
+const pageNumList = Array.from({ length: page.lastPage }, (_, i) => i + 1)
+const paginationNumList = pageNumList.map((pageNum) => {
+  if (
+    pageNum === 1 ||
+    pageNum === page.lastPage ||
+    (pageNum >= page.currentPage - 2 && pageNum <= page.currentPage + 2)
+  ) {
+    return pageNum
+  } else return undefined
+})
+// 連続する同一な値を削除
+const filteredPaginationNum = paginationNumList.filter((num, index, arr) => {
+  return index === 0 || num !== arr[index - 1]
+})
+
+const paginationInfoList: {
+  link: string | undefined
+  text: number | string
+}[] = filteredPaginationNum.map((num) => {
+  if (num) {
+    return {
+      link: `/archive/${num}`,
+      text: num,
+    }
+  } else {
+    return {
+      link: undefined,
+      text: "...",
+    }
+  }
+})
+if (page.url.prev) {
+  paginationInfoList.unshift({
+    link: page.url.prev,
+    text: "<",
+  })
+}
+if (page.url.next) {
+  paginationInfoList.push({
+    link: page.url.next,
+    text: ">",
+  })
+}
+---
+
+<Layout pageName="Archive">
+  <main>
+    <h2 class="text-2xl font-bold mb-4">記事一覧</h2>
+    <div class="flex flex-row flex-wrap gap-6 justify-around">
+      {
+        page.data.map((content: ArticleApiSchema) => (
+          <div class="card w-72">
+            <a href={"/archive/" + content.id}>
+              <Eyecatch image={content.eyecatch?.url} />
+              <div class="p-5">
+                <div class="mb-2 text-xl font-bold tracking-tight">
+                  {content.title}
+                </div>
+                <div class="flex flex-row items-center">
+                  <Icon name="mdi:clock-outline" />
+                  {content.publishedAt?.split("T")[0] || ""}
+                </div>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    <Ad />
+    <div class="flex flex-row gap-1 justify-center mt-8">
+      {
+        paginationInfoList.map((paginationInfo) => (
+          <a
+            href={paginationInfo.link}
+            class="w-8 h-8 flex items-center justify-center border rounded border-indigo-600"
+            class:list={[
+              {
+                "bg-indigo-600 text-white":
+                  paginationInfo.text === page.currentPage,
+              },
+            ]}
+          >
+            {paginationInfo.text}
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

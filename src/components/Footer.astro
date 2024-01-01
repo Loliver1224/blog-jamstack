@@ -1,0 +1,53 @@
+---
+const today = new Date()
+
+const pages = [
+  {
+    link: "/privacy-policy",
+    text: "Privacy Policy",
+  },
+  {
+    link: "/contact",
+    text: "Contact",
+  },
+]
+---
+
+<footer class="bottom-0 p-2 bg-white footer">
+  <div class="footer-item-center">
+    &copy; {today.getFullYear()} Daichi Furukawa. All rights reserved.
+  </div>
+  <div class="footer-item-right">
+    {
+      pages.map((page, index) => (
+        <a
+          href={page.link}
+          class="border-l border-indigo-600 px-2"
+          class:list={[{ "border-r": index === pages.length - 1 }]}
+        >
+          {page.text}
+        </a>
+      ))
+    }
+  </div>
+</footer>
+<style>
+  :global(.darkmode footer) {
+    background-color: #1d1d29;
+    color: white;
+  }
+
+  .footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .footer-item-center {
+    grid-column: 2;
+    justify-self: center;
+  }
+  .footer-item-right {
+    grid-column: 3;
+    justify-self: right;
+  }
+</style>

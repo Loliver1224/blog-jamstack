@@ -1,0 +1,488 @@
+/*
+  The CSS in this style tag is based off of Bear Blog's default CSS.
+  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+ */
+/* body {
+	font-family: Verdana, sans-serif;
+	margin: auto;
+	padding: 20px;
+	max-width: 65ch;
+	text-align: left;
+	background-color: #fff;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+	color: #444;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+	color: #222;
+}
+a {
+	color: #3273dc;
+}
+nav a {
+	margin-right: 10px;
+}
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+input {
+	font-size: 16px;
+}
+content {
+	line-height: 1.6;
+}
+table {
+	width: 100%;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+code {
+	padding: 2px 5px;
+	background-color: #f2f2f2;
+}
+pre {
+	padding: 1rem;
+}
+pre > code {
+	all: unset;
+}
+blockquote {
+	border: 1px solid #999;
+	color: #222;
+	padding: 2px 0px 2px 20px;
+	margin: 0px;
+	font-style: italic;
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/** --- Cocoon互換用定義 --- */
+.bold {
+  @apply font-bold;
+}
+
+.red {
+  @apply text-red-600;
+}
+
+.bold-red {
+  @apply font-bold text-red-600;
+}
+
+.red-under {
+  border-bottom: 2px solid red;
+}
+
+.marker-under {
+  background: linear-gradient(transparent 60%, #ff9 60%);
+}
+
+.badge {
+  @apply bg-amber-500;
+  @apply text-white;
+  @apply text-xs;
+  padding: 1px 5px 0;
+  border-radius: 2px;
+}
+
+.information-box,
+.question-box,
+.alert-box {
+  padding: 20px;
+  border-radius: 4px;
+  position: relative;
+  display: block;
+}
+.information-box {
+  background: #f3fafe;
+  border: 1px solid #bde4fc;
+}
+.question-box {
+  background: #fff7cc;
+  border: 1px solid #ffe766;
+}
+.alert-box {
+  background: #fdf2f2;
+  border: 1px solid #f6b9b9;
+}
+.info-box {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.danger-box {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.speech-wrap {
+  display: flex;
+}
+.speech-person {
+  width: 12%;
+  min-width: 12%;
+}
+.speech-icon img {
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  width: 100%;
+}
+.speech-balloon {
+  margin-left: 20px;
+  height: 100%;
+  position: relative;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ccc;
+  color: #333;
+  border-radius: 6px;
+  max-width: 86%;
+}
+.speech-balloon::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -12px;
+  top: 10px;
+  border-right-width: 12px;
+  border-right-style: solid;
+  border-right-color: #ccc;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+.speech-balloon::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -9px;
+  top: 10px;
+  border-right-width: 12px;
+  border-right-style: solid;
+  border-right-color: #fff;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+/** --------- */
+
+.bg-gradient {
+  background-image: linear-gradient(
+    45deg,
+    rgba(155, 255, 153, 0.35),
+    rgba(168, 202, 240, 0.35) 50%,
+    rgba(255, 255, 255, 0.35)
+  );
+  /** スクロール時に背景を固定 */
+  background-attachment: fixed;
+}
+
+.darkmode.bg-gradient {
+  background: #000428; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #004e92,
+    #000428
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #004e92,
+    #000428
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-attachment: fixed;
+}
+
+.logo {
+  /** ロゴの文字色にグラデーションを適用 */
+  background: radial-gradient(
+    at 50% 20%,
+    rgba(67, 194, 255, 1),
+    rgba(39, 70, 214, 1) 22%,
+    rgba(0, 0, 0, 1)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+.darkmode .logo {
+  background: radial-gradient(
+    at 50% 20%,
+    rgba(67, 194, 255, 1),
+    rgba(39, 70, 214, 1) 22%,
+    rgb(77, 77, 77)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+.darkmode header {
+  @apply bg-gray-900;
+  @apply text-white;
+}
+
+.card {
+  @apply bg-white;
+  @apply border;
+  @apply border-gray-200;
+  @apply rounded-lg;
+  @apply shadow;
+}
+
+.darkmode .card {
+  @apply bg-gray-900;
+  @apply border-gray-800;
+}
+
+nav li {
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+nav li:hover {
+  @apply text-white;
+  @apply bg-indigo-600;
+}
+
+/** リンク押下範囲を親要素分に広げる */
+nav li > a {
+  display: block;
+}
+
+aside h3 {
+  padding: 12px;
+  margin-bottom: 16px;
+  @apply text-lg;
+  @apply font-bold;
+}
+
+.sidebar {
+  @apply bg-white;
+}
+
+.darkmode .sidebar {
+  @apply bg-gray-900;
+  @apply text-white;
+}
+
+.main {
+  @apply bg-white;
+}
+
+.darkmode .main {
+  @apply bg-gray-900;
+  @apply text-white;
+}
+
+/** --- アイコンスタイル --- */
+[astro-icon] {
+  height: 16px;
+  width: 16px;
+}
+
+/** --- コードブロックスタイル --- */
+pre {
+  overflow-x: auto;
+  margin-top: 16px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+}
+
+div[data-filename] {
+  margin-top: 16px;
+}
+
+div[data-filename] > span {
+  display: inline-block;
+  background-color: #dfdfdf;
+  text-align: center;
+  padding: 3px 15px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+div[data-filename] > pre {
+  margin-top: 0px;
+  border-top-left-radius: 0px;
+}
+
+.darkmode div[data-filename] > span {
+  background-color: #666;
+  color: white;
+}
+
+/** --- 記事本文スタイル --- */
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  @apply font-bold;
+  @apply border-indigo-600;
+  @apply py-2;
+}
+
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  @apply my-4;
+}
+
+article h1,
+article h2 {
+  @apply pl-2;
+  @apply border-0;
+  @apply border-l-8;
+  background: #f4f4f4;
+}
+
+article h1 {
+  @apply text-3xl;
+}
+
+article h2 {
+  @apply text-2xl;
+  @apply pb-2;
+  @apply mt-8;
+}
+
+article h3,
+article h4 {
+  @apply text-xl;
+}
+
+article h3 {
+  @apply pl-2;
+  @apply border;
+  @apply border-l-8;
+}
+
+article h4 {
+  @apply border-y-2;
+}
+
+article h5,
+article h6 {
+  @apply text-lg;
+}
+
+article h5 {
+  @apply border-b-2;
+}
+
+article a {
+  @apply text-indigo-600;
+  @apply underline;
+  @apply break-all;
+}
+
+article hr {
+  @apply mb-4;
+}
+
+article p,
+article pre,
+article .information-box {
+  @apply mb-[1.4rem];
+}
+
+article ul {
+  @apply list-disc;
+  @apply pl-6;
+  @apply mb-4;
+}
+
+article code {
+  background: rgba(222, 223, 224, 0.15);
+  border: 1px solid rgba(222, 223, 224, 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+article table {
+  width: 100%;
+}
+article table p {
+  @apply m-1;
+}
+article th,
+article td {
+  border: 1px solid #fff;
+}
+article th {
+  @apply bg-indigo-600;
+  color: #fff;
+}
+article tr:nth-child(even) {
+  background: #dfdfdf;
+  border: 1px solid #222;
+}
+article tr:nth-child(odd) {
+  background: #efefef;
+  border: 1px solid #222;
+}
+
+article ol {
+  list-style: decimal inside;
+}
+article ul {
+  list-style-type: disc inside;
+}
+article li {
+  @apply my-1;
+}
+
+blockquote {
+  background-color: rgba(80, 77, 70, 0.05);
+  border-color: rgba(80, 77, 70, 0.05);
+  border: 1px solid #ddd;
+  padding: 1.4em 1.8em;
+  position: relative;
+  @apply m-2;
+}
+blockquote::before,
+blockquote::after {
+  font-family: serif;
+  position: absolute;
+  font-size: 300%;
+}
+blockquote::after {
+  content: "”";
+  line-height: 0;
+  right: 10px;
+  bottom: 0;
+}
+blockquote::before {
+  content: "“";
+  line-height: 1.1;
+  left: 10px;
+  top: 0;
+}
+/** --------- */

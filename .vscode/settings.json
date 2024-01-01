@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "prettier.documentSelectors": [
+    "**/*.astro"
+  ],
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "[astro]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "css.lint.unknownAtRules": "ignore"
+}
