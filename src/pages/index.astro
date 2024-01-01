@@ -3,6 +3,7 @@ import { Icon } from "astro-icon"
 
 import Layout from "@/layouts/Layout.astro"
 import Eyecatch from "@/components/Eyecatch.astro"
+import Ad from "@/components/Ad.astro"
 import { getAllArticles } from "@/lib/client"
 
 const articlesApiData = await getAllArticles({
@@ -37,6 +38,7 @@ const articlesApiData = await getAllArticles({
         ))
       }
     </div>
+    <Ad />
 
     <h2 class="text-2xl font-bold my-4">人気記事</h2>
     <div

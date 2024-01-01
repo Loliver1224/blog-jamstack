@@ -5,6 +5,7 @@ import { getAllArticlesDetail, getArticleDetail } from "@/lib/client"
 import { Icon } from "astro-icon"
 import { applySyntaxHighlighting } from "@/utils/highlight"
 import "highlight.js/styles/atom-one-dark.min.css"
+import Ad from "@/components/Ad.astro"
 
 export async function getStaticPaths() {
   const response = await getAllArticlesDetail({ fields: ["id"] })
@@ -41,5 +42,6 @@ if (articleDetail.context) {
     </div>
     <hr class="my-4 bg-indigo-600 h-[2px]" />
     <div set:html={articleContent} />
+    <Ad />
   </article>
 </Layout>

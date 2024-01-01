@@ -1,0 +1,2 @@
+Sitemap: https://blog.loliver.net/sitemap.xml
+Sitemap: https://blog.loliver.net/sitemap.rss
