@@ -449,6 +449,16 @@ article tr:nth-child(odd) {
   border: 1px solid #222;
 }
 
+article ol {
+  list-style: decimal inside;
+}
+article ul {
+  list-style-type: disc inside;
+}
+article li {
+  @apply my-1;
+}
+
 blockquote {
   background-color: rgba(80, 77, 70, 0.05);
   border-color: rgba(80, 77, 70, 0.05);
@@ -474,15 +484,5 @@ blockquote::before {
   line-height: 1.1;
   left: 10px;
   top: 0;
-}
-
-ol {
-  list-style: decimal inside;
-}
-ul {
-  list-style-type: disc inside;
-}
-li {
-  @apply my-1;
 }
 /** --------- */
