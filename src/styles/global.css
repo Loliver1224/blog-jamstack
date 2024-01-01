@@ -75,6 +75,10 @@ blockquote {
   @apply font-bold;
 }
 
+.red {
+  @apply text-red-600;
+}
+
 .bold-red {
   @apply font-bold text-red-600;
 }
@@ -85,6 +89,104 @@ blockquote {
 
 .marker-under {
   background: linear-gradient(transparent 60%, #ff9 60%);
+}
+
+.badge {
+  @apply bg-amber-500;
+  @apply text-white;
+  @apply text-xs;
+  padding: 1px 5px 0;
+  border-radius: 2px;
+}
+
+.information-box,
+.question-box,
+.alert-box {
+  padding: 20px;
+  border-radius: 4px;
+  position: relative;
+  display: block;
+}
+.information-box {
+  background: #f3fafe;
+  border: 1px solid #bde4fc;
+}
+.question-box {
+  background: #fff7cc;
+  border: 1px solid #ffe766;
+}
+.alert-box {
+  background: #fdf2f2;
+  border: 1px solid #f6b9b9;
+}
+.info-box {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.danger-box {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.speech-wrap {
+  display: flex;
+}
+.speech-person {
+  width: 12%;
+  min-width: 12%;
+}
+.speech-icon img {
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  width: 100%;
+}
+.speech-balloon {
+  margin-left: 20px;
+  height: 100%;
+  position: relative;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ccc;
+  color: #333;
+  border-radius: 6px;
+  max-width: 86%;
+}
+.speech-balloon::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -12px;
+  top: 10px;
+  border-right-width: 12px;
+  border-right-style: solid;
+  border-right-color: #ccc;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+.speech-balloon::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -9px;
+  top: 10px;
+  border-right-width: 12px;
+  border-right-style: solid;
+  border-right-color: #fff;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
 }
 
 /** --------- */
@@ -234,50 +336,71 @@ div[data-filename] > pre {
 }
 
 /** --- 記事本文スタイル --- */
-article h1 {
-  @apply text-3xl;
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
   @apply font-bold;
+  @apply border-indigo-600;
+  @apply py-2;
 }
 
 article h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold;
-  @apply border-indigo-600;
+article h3,
+article h4,
+article h5,
+article h6 {
   @apply my-4;
+}
+
+article h1,
+article h2 {
+  @apply pl-2;
+  @apply border-0;
+  @apply border-l-8;
+  background: #f4f4f4;
+}
+
+article h1 {
+  @apply text-3xl;
 }
 
 article h2 {
   @apply text-2xl;
   @apply pb-2;
-  @apply border-b-2;
+  @apply mt-8;
 }
 
 article h3,
-h4 {
+article h4 {
   @apply text-xl;
 }
 
 article h3 {
-  @apply py-2;
-  @apply border-y-2;
+  @apply pl-2;
+  @apply border;
+  @apply border-l-8;
 }
 
 article h4 {
-  @apply pl-2;
-  @apply border-l-4;
+  @apply border-y-2;
 }
 
 article h5,
-h6 {
+article h6 {
   @apply text-lg;
+}
+
+article h5 {
+  @apply border-b-2;
 }
 
 article a {
   @apply text-indigo-600;
   @apply underline;
+  @apply break-all;
 }
 
 article hr {
@@ -296,4 +419,70 @@ article ul {
   @apply mb-4;
 }
 
+article code {
+  background: rgba(222, 223, 224, 0.15);
+  border: 1px solid rgba(222, 223, 224, 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+article table {
+  width: 100%;
+}
+article table p {
+  @apply m-1;
+}
+article th,
+article td {
+  border: 1px solid #fff;
+}
+article th {
+  @apply bg-indigo-600;
+  color: #fff;
+}
+article tr:nth-child(even) {
+  background: #dfdfdf;
+  border: 1px solid #222;
+}
+article tr:nth-child(odd) {
+  background: #efefef;
+  border: 1px solid #222;
+}
+
+blockquote {
+  background-color: rgba(80, 77, 70, 0.05);
+  border-color: rgba(80, 77, 70, 0.05);
+  border: 1px solid #ddd;
+  padding: 1.4em 1.8em;
+  position: relative;
+  @apply m-2;
+}
+blockquote::before,
+blockquote::after {
+  font-family: serif;
+  position: absolute;
+  font-size: 300%;
+}
+blockquote::after {
+  content: "”";
+  line-height: 0;
+  right: 10px;
+  bottom: 0;
+}
+blockquote::before {
+  content: "“";
+  line-height: 1.1;
+  left: 10px;
+  top: 0;
+}
+
+ol {
+  list-style: decimal inside;
+}
+ul {
+  list-style-type: disc inside;
+}
+li {
+  @apply my-1;
+}
 /** --------- */
