@@ -5,14 +5,19 @@ import Profile from "@/components/Profile.astro"
 import Footer from "@/components/Footer.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts"
 
-const { pageName } = Astro.props
+const {
+  pageName,
+  description = SITE_DESCRIPTION,
+  image = "/favicon.png",
+} = Astro.props
 ---
 
 <html lang="ja">
   <head>
     <BaseHead
       title={pageName ? `${pageName} | ${SITE_TITLE}` : SITE_TITLE}
-      description={SITE_DESCRIPTION}
+      description={description}
+      image={image}
     />
   </head>
   <body class="bg-gradient">
