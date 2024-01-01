@@ -1,0 +1,15 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { Content } from "../posts/privacy-policy.md"
+
+const title = "プライバシーポリシー"
+---
+
+<Layout pageName={title}>
+  <main>
+    <article>
+      <h2>{title}</h2>
+      <Content />
+    </article>
+  </main>
+</Layout>

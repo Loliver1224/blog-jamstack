@@ -6,6 +6,7 @@ import Layout from "@/layouts/Layout.astro"
 import Eyecatch from "@/components/Eyecatch.astro"
 import { getAllArticlesDetail } from "@/lib/client"
 import type { ArticleApiSchema } from "@/types/api"
+import Ad from "@/components/Ad.astro"
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const articlesApiData = await getAllArticlesDetail({
@@ -87,6 +88,7 @@ if (page.url.next) {
         ))
       }
     </div>
+    <Ad />
     <div class="flex flex-row gap-1 justify-center mt-8">
       {
         paginationInfoList.map((paginationInfo) => (
