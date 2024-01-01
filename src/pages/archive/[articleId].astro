@@ -33,7 +33,11 @@ if (articleDetail.context) {
 }
 ---
 
-<Layout pageName={articleDetail.title}>
+<Layout
+  pageName={articleDetail.title}
+  description={articleContent}
+  image={articleDetail.eyecatch?.url}
+>
   <article>
     <h1>{articleDetail.title}</h1>
     <div class="flex flex-row-reverse items-center">
