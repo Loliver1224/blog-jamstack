@@ -26,7 +26,13 @@ const title = "お問い合わせ"
     <article>
       <h2>{title}</h2>
       <p>下記お問い合わせフォームに記入して送信してください。</p>
-      <form action="https://ssgform.com/s/XPKZ7eBQU8Oy" method="post">
+      <form
+        id="contactForm"
+        action="/dummy"
+        onsubmit="return validateForm()"
+        method="post"
+      >
+        <div style="display: none;"><input id="wana" type="text" /></div>
         <p>
           <label for="name" class="form-label">名前(必須)</label>
           <input
@@ -57,12 +63,24 @@ const title = "お問い合わせ"
             class="form-input form-input-message"></textarea>
         </p>
         <p>
-          <button
+          <input
             type="submit"
-            class="bg-indigo-600 text-white py-2 px-4 rounded">送信</button
-          >
+            value="送信"
+            class="bg-indigo-600 text-white py-2 px-4 rounded"
+          />
         </p>
       </form>
     </article>
   </main>
+
+  <script is:inline>
+    const validateForm = () => {
+      if (document.querySelector("#wana").value) {
+        return false
+      }
+      document.querySelector("#contactForm").action =
+        "https://ssgform.com/s/XPKZ7eBQU8Oy"
+      return true
+    }
+  </script>
 </Layout>
