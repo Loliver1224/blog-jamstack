@@ -1,0 +1,25 @@
+---
+import "@pagefind/default-ui"
+import "@pagefind/default-ui/css/ui.css"
+---
+
+<search-box>
+  <div id="search"></div>
+</search-box>
+
+<script>
+  import { PagefindUI } from "@pagefind/default-ui"
+
+  // ページ遷移後も再実行されるようにする
+  // ref. https://docs.astro.build/ja/guides/client-side-scripts/#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A6%81%E7%B4%A0%E3%82%92%E6%8C%81%E3%81%A4web%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88
+  class SearchBox extends HTMLElement {
+    constructor() {
+      super()
+      new PagefindUI({
+        element: "#search",
+      })
+    }
+  }
+
+  customElements.define("search-box", SearchBox)
+</script>

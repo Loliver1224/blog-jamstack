@@ -38,7 +38,7 @@ if (articleDetail.context) {
   description={articleContent}
   image={articleDetail.eyecatch?.url}
 >
-  <article>
+  <article data-pagefind-body>
     <h1>{articleDetail.title}</h1>
     <div class="flex flex-row-reverse items-center">
       {articleDetail.publishedAt?.split("T")[0] || ""}
