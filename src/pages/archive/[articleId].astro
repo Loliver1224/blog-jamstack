@@ -4,6 +4,7 @@ import { getAllArticlesDetail, getArticleDetail } from "@/lib/client"
 
 import { Icon } from "astro-icon"
 import { applySyntaxHighlighting } from "@/utils/highlight"
+import { applyWrapTableElement } from "@/utils/wrap_table"
 import "highlight.js/styles/atom-one-dark.min.css"
 import Ad from "@/components/Ad.astro"
 
@@ -23,12 +24,14 @@ const articleDetail = await getArticleDetail(articleId!)
 let articleContent = ""
 if (articleDetail.context) {
   articleContent = applySyntaxHighlighting(articleDetail.context)
+  articleContent = applyWrapTableElement(articleContent)
 } else {
   articleDetail.content?.forEach((content) => {
     const fieldType = content.fieldId
     // TODO: もっと良いアクセス方法
     const contentData = content[fieldType]
-    articleContent += applySyntaxHighlighting(contentData ?? "")
+    const highlightedData = applySyntaxHighlighting(contentData ?? "")
+    articleContent += applyWrapTableElement(highlightedData)
   })
 }
 ---
