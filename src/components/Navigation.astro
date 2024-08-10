@@ -1,5 +1,6 @@
 ---
 import "@fontsource/turret-road"
+import { Icon } from "astro-icon"
 import DarkMode from "@/components/DarkMode.astro"
 
 const navLinkList = [
@@ -29,6 +30,11 @@ const navLinkList = [
           </li>
         ))
       }
+      <li class="w-10 flex justify-center">
+        <a href="/search" class="p-1">
+          <Icon name="mdi:magnify" style="width: 26px; height: 26px" />
+        </a>
+      </li>
       <li transition:persist>
         <DarkMode />
       </li>
