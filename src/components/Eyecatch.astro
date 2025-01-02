@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets"
 
-const { id, image } = Astro.props
+const { id } = Astro.props
 ---
 
 <Image
-  src={image ?? `/archive/${id}/ogp.png`}
+  src={`/archive/ogp/${id}.png`}
   alt="サムネイル"
   width="320"
   height="180"

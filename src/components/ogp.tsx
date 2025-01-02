@@ -1,9 +1,18 @@
 import { ImageResponse } from "@vercel/og"
+import { readFileSync } from "fs"
+import { join } from "path"
 
 export const getOgpImageResponse = async (params: {
   title: string
-  categories: string[]
 }): Promise<Response> => {
+  const imagePath = join(process.cwd(), "assets", "ogimage-base.png")
+
+  const imageBuffer = readFileSync(imagePath)
+  const base64Image = `data:image/png;base64,${imageBuffer.toString("base64")}`
+
+  const fontPath = join(process.cwd(), "assets", "NotoSansJP-Bold.ttf")
+  const fontData = readFileSync(fontPath)
+
   return new ImageResponse(
     (
       <div
@@ -11,97 +20,47 @@ export const getOgpImageResponse = async (params: {
         style={{
           width: "100%",
           height: "100%",
-          background: "#e3effc",
+          backgroundImage: `url(${base64Image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           position: "relative",
-          padding: "32px",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
         }}
       >
-        {/* アバターイメージを薄くして背景に配置 */}
-        <img
-          width="330px"
-          height="330px"
-          src={`https://github.com/Loliver1224.png`}
-          style={{
-            position: "absolute",
-            left: "50%",
-            bottom: 0,
-            opacity: 0.2,
-          }}
-        />
-        {/* カテゴリーエリア */}
-        {/* <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            marginBottom: "16px",
-          }}
-        >
-          {params.categories.map((category, index) => (
-            <div
-              key={index}
-              style={{
-                padding: "4px 8px",
-                border: "1px solid #4f46e5",
-                borderRadius: "4px",
-                fontSize: "24px",
-                color: "#4f46e5",
-                background: "white",
-              }}
-            >
-              {category}
-            </div>
-          ))}
-        </div> */}
-
-        {/* タイトルエリア */}
         <div
           style={{
             display: "flex",
+            height: "100%",
+            width: "100%",
+            padding: "64px",
             alignItems: "center",
             justifyContent: "center",
-            height: "160px",
+            textAlign: "center",
+            color: "#004aad",
+            fontFamily: '"NotoSansJP", sans-serif',
+            fontSize: "64px",
+            fontWeight: "bold",
+            // サイズ違いのshadowを重ねて全方向へのshadowを表現
+            textShadow:
+              "0 0 1px #fff, 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 16px #fff",
           }}
         >
-          <h1
-            style={{
-              fontSize: "32px",
-              fontWeight: "bold",
-              color: "#1e1b4b",
-              textAlign: "center",
-              margin: 0,
-            }}
-          >
-            {params.title}
-          </h1>
-        </div>
-
-        {/* 著者エリア */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            gap: "12px",
-            height: "32px",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "32px",
-              color: "#4f46e5",
-            }}
-          >
-            {"Loliver's Landscape"}
-          </div>
+          {params.title}
         </div>
       </div>
     ),
     {
-      width: 600,
-      height: 330,
+      width: 1200,
+      height: 630,
+      fonts: [
+        {
+          name: "NotoSansJP",
+          data: fontData,
+          style: "normal",
+        },
+      ],
     },
   )
 }
