@@ -23,7 +23,7 @@ const articlesApiData = await getAllArticles({
         articlesApiData.contents.map((content) => (
           <div class="card w-72">
             <a href={"/archive/" + content.id}>
-              <Eyecatch image={content.eyecatch?.url} />
+              <Eyecatch id={content.id} image={content.eyecatch?.url} />
               <div class="p-5">
                 <div class="mb-2 text-xl font-bold tracking-tight">
                   {content.title}

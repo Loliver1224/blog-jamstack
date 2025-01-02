@@ -2,9 +2,13 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "strictNullChecks": true,
-    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "baseUrl": "/Users/loliver/Projects/blog-jamstack",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "jsxImportSource": "react"
   }
 }

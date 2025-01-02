@@ -26,8 +26,8 @@ export interface ArticleApiSchema extends MicroCMSDate {
   context?: string
   content?: ContentApiSchema[]
   eyecatch?: MicroCMSImage
-  category: CategoryApiSchema
-  subcategory: SubcategoryApiSchema
+  categories: CategoryApiSchema[]
+  subcategories: SubcategoryApiSchema[]
 }
 
 export interface ArticlesApiSchema {
