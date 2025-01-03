@@ -5,14 +5,6 @@ export interface CategoryApiSchema extends MicroCMSDate {
   name: string
 }
 
-export interface SubcategoryApiSchema extends MicroCMSDate {
-  id: string
-  name: string
-  parent: {
-    id: string
-  }
-}
-
 export interface ContentApiSchema {
   fieldId: "html" | "richEditor"
   html?: string
@@ -27,7 +19,6 @@ export interface ArticleApiSchema extends MicroCMSDate {
   content?: ContentApiSchema[]
   eyecatch?: MicroCMSImage
   categories: CategoryApiSchema[]
-  subcategories: SubcategoryApiSchema[]
 }
 
 export interface ArticlesApiSchema {

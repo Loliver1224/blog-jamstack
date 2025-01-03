@@ -1,0 +1,76 @@
+---
+// ページネーション
+interface Props {
+  length: number
+  currentPage: number
+  pageRoute: string
+  prevUrl?: string
+  nextUrl?: string
+}
+
+const props = Astro.props
+
+// 現在±2ページ+先頭or最終ページへのリンクを作成
+const pageNumList = Array.from({ length: props.length }, (_, i) => i + 1)
+const paginationNumList = pageNumList.map((pageNum) => {
+  if (
+    pageNum === 1 ||
+    pageNum === props.length ||
+    (pageNum >= props.currentPage - 2 && pageNum <= props.currentPage + 2)
+  ) {
+    return pageNum
+  } else return undefined
+})
+// 連続する同一な値を削除
+const filteredPaginationNum = paginationNumList.filter((num, index, arr) => {
+  return index === 0 || num !== arr[index - 1]
+})
+
+const paginationInfoList: {
+  link: string | undefined
+  text: number | string
+}[] = filteredPaginationNum.map((num) => {
+  if (num) {
+    return {
+      link: `/${props.pageRoute}/${num}`,
+      text: num,
+    }
+  } else {
+    return {
+      link: undefined,
+      text: "...",
+    }
+  }
+})
+if (props.prevUrl) {
+  paginationInfoList.unshift({
+    link: props.prevUrl,
+    text: "<",
+  })
+}
+if (props.nextUrl) {
+  paginationInfoList.push({
+    link: props.nextUrl,
+    text: ">",
+  })
+}
+---
+
+<div class="flex flex-row gap-1 justify-center mt-8">
+  {
+    paginationInfoList.map((paginationInfo) => (
+      <a
+        href={paginationInfo.link}
+        class="w-8 h-8 flex items-center justify-center border rounded border-indigo-600"
+        class:list={[
+          {
+            "bg-indigo-600 text-white":
+              paginationInfo.text === props.currentPage,
+          },
+        ]}
+      >
+        {paginationInfo.text}
+      </a>
+    ))
+  }
+</div>

@@ -1,0 +1,62 @@
+---
+import type { GetStaticPathsOptions } from "astro"
+import Layout from "@/layouts/Layout.astro"
+import {
+  getAllArticlesDetail,
+  getAllCategories,
+  getCategoryDetail,
+} from "@/lib/client"
+import Ad from "@/components/Ad.astro"
+import ArticleCard from "@/components/ArticleCard.astro"
+import type { ArticleApiSchema } from "@/types/api"
+import PaginationButton from "@/components/PaginationButton.astro"
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const categoriesApiData = await getAllCategories({ fields: ["id"] })
+  const allCategoryIds = categoriesApiData.map((content) => content.id)
+
+  const articlesApiData = await getAllArticlesDetail({
+    fields: ["id", "title", "publishedAt", "categories"],
+    orders: "-publishedAt",
+  })
+
+  // ref. https://docs.astro.build/en/guides/routing/#nested-pagination
+  return allCategoryIds.flatMap((categoryId) => {
+    const filteredArticles = articlesApiData.filter((article) =>
+      article.categories.some((category) => category.id == categoryId),
+    )
+    return paginate(filteredArticles, {
+      params: {
+        categoryId,
+      },
+      pageSize: 6,
+    })
+  })
+}
+
+const { page } = Astro.props
+const { categoryId } = Astro.params
+
+const categoryDetail = await getCategoryDetail(categoryId)
+---
+
+<Layout pageName={categoryDetail.name}>
+  <main>
+    <h2 class="text-2xl font-bold mb-4">#{categoryDetail.name}</h2>
+    <div class="flex flex-row flex-wrap gap-6 justify-around">
+      {
+        page.data.map((content: ArticleApiSchema) => (
+          <ArticleCard content={content} />
+        ))
+      }
+    </div>
+    <Ad />
+    <PaginationButton
+      length={page.lastPage}
+      currentPage={page.currentPage}
+      pageRoute=`categories/${categoryId}`
+      prevUrl={page.url.prev}
+      nextUrl={page.url.next}
+    />
+  </main>
+</Layout>
