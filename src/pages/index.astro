@@ -1,14 +1,19 @@
 ---
-import { Icon } from "astro-icon"
-
 import Layout from "@/layouts/Layout.astro"
-import Eyecatch from "@/components/Eyecatch.astro"
 import Ad from "@/components/Ad.astro"
 import { getAllArticles } from "@/lib/client"
+import ArticleCard from "@/components/ArticleCard.astro"
 
 const articlesApiData = await getAllArticles({
   limit: 3,
-  fields: ["id", "eyecatch", "title", "publishedAt"],
+  fields: [
+    "id",
+    "eyecatch",
+    "title",
+    "publishedAt",
+    "categories",
+    "subcategories",
+  ],
   orders: "-publishedAt",
 })
 ---
@@ -21,20 +26,7 @@ const articlesApiData = await getAllArticles({
     >
       {
         articlesApiData.contents.map((content) => (
-          <div class="card w-72">
-            <a href={"/archive/" + content.id}>
-              <Eyecatch image={content.eyecatch?.url} />
-              <div class="p-5">
-                <div class="mb-2 text-xl font-bold tracking-tight">
-                  {content.title}
-                </div>
-                <div class="flex flex-row items-center">
-                  <Icon name="mdi:clock-outline" />
-                  {content.publishedAt?.split("T")[0] || ""}
-                </div>
-              </div>
-            </a>
-          </div>
+          <ArticleCard content={content} />
         ))
       }
     </div>

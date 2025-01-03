@@ -1,0 +1,35 @@
+---
+import Eyecatch from "./Eyecatch.astro"
+import type { ArticleApiSchema } from "@/types/api"
+
+interface Props {
+  content: ArticleApiSchema
+}
+
+const { content } = Astro.props
+
+const categoryNames = content.categories.map((cat) => cat.name)
+const subcategoryNames = content.subcategories.map((subcat) => subcat.name)
+
+const categories = subcategoryNames.length ? subcategoryNames : categoryNames
+---
+
+<div class="card w-72">
+  <a href={"/archive/" + content.id}>
+    <Eyecatch id={content.id} />
+    <div class="p-4">
+      <div class="text-sm mb-2">
+        {content.publishedAt?.split("T")[0] || ""}
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {
+          categories?.map((cat) => (
+            <span class="text-xs text-indigo-500 border border-indigo-500 rounded-md px-2 py-1">
+              {cat}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </a>
+</div>

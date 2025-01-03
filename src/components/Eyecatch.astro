@@ -1,14 +1,13 @@
 ---
 import { Image } from "astro:assets"
-import avatarImg from "@/images/avatar.png"
 
-const { image } = Astro.props
+const { id } = Astro.props
 ---
 
 <Image
-  src={image ?? avatarImg}
+  src={`/archive/ogp/${id}.png`}
   alt="サムネイル"
   width="320"
   height="180"
-  class="rounded-t-lg object-cover h-32 w-96"
+  class="rounded-t-lg object-cover h-40 w-96"
 />
