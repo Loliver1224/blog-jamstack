@@ -1,6 +1,10 @@
 import { createClient } from "microcms-js-sdk"
 import type { MicroCMSQueries } from "microcms-js-sdk"
-import type { ArticleApiSchema, ArticlesApiSchema } from "@/types/api"
+import type {
+  ArticleApiSchema,
+  ArticlesApiSchema,
+  CategoryApiSchema,
+} from "@/types/api"
 
 export const client = createClient({
   serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN,
@@ -27,6 +31,24 @@ export const getArticleDetail = async (
 ) => {
   return await client.getListDetail<ArticleApiSchema>({
     endpoint: "articles",
+    contentId,
+    queries,
+  })
+}
+
+export const getAllCategories = async (queries?: MicroCMSQueries) => {
+  return await client.getAllContents<CategoryApiSchema>({
+    endpoint: "category",
+    queries,
+  })
+}
+
+export const getCategoryDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+) => {
+  return await client.getListDetail<CategoryApiSchema>({
+    endpoint: "category",
     contentId,
     queries,
   })

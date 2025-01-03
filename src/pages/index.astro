@@ -6,14 +6,7 @@ import ArticleCard from "@/components/ArticleCard.astro"
 
 const articlesApiData = await getAllArticles({
   limit: 3,
-  fields: [
-    "id",
-    "eyecatch",
-    "title",
-    "publishedAt",
-    "categories",
-    "subcategories",
-  ],
+  fields: ["id", "eyecatch", "title", "publishedAt", "categories"],
   orders: "-publishedAt",
 })
 ---
