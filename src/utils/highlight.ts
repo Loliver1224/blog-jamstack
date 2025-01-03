@@ -1,10 +1,11 @@
-import hljs from "highlight.js"
-import type { HighlightResult } from "highlight.js"
+import { codeToHtml } from "shiki"
 import { load } from "cheerio"
 
 // --- シンタックスハイライト適用 ---
 // cf. https://codeseterpie.com/blog/e91oc4aaef58/
-export const applySyntaxHighlighting = (content: string): string => {
+export const applySyntaxHighlighting = async (
+  content: string,
+): Promise<string> => {
   const cheerioObj = load(content)
 
   cheerioObj("div[data-filename]").each((_, elm) => {
@@ -15,21 +16,17 @@ export const applySyntaxHighlighting = (content: string): string => {
     )
   })
 
-  cheerioObj("pre code").each((_, elm) => {
-    const lang = cheerioObj(elm).attr("class")
-    let result: HighlightResult
+  for (const elm of cheerioObj("pre code")) {
+    // 言語を取得. 未指定の場合はplaintextとする
+    const lang = cheerioObj(elm).attr("class") ?? "plaintext"
+    const result = await codeToHtml(cheerioObj(elm).text(), {
+      lang: lang.replace("language-", ""),
+      theme: "one-dark-pro",
+    })
 
-    if (lang) {
-      result = hljs.highlight(cheerioObj(elm).text(), {
-        language: lang.replace("language-", ""),
-      })
-    } else {
-      // 言語が選択されていない場合は自動判定
-      result = hljs.highlightAuto(cheerioObj(elm).text())
-    }
-    cheerioObj(elm).html(result.value)
-    cheerioObj(elm).addClass("hljs")
-  })
+    // 既存のpre code要素をshikiのもので上書き
+    cheerioObj(elm).parent().replaceWith(result)
+  }
 
   return cheerioObj.html()
 }
