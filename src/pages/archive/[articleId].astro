@@ -39,7 +39,7 @@ if (articleDetail.context) {
 <Layout
   pageName={articleDetail.title}
   description={articleContent}
-  image={articleDetail.eyecatch?.url}
+  image={`/archive/ogp/${articleDetail.id}.png`}
 >
   <article data-pagefind-body>
     <h1>{articleDetail.title}</h1>
