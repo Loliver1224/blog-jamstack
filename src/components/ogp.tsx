@@ -1,6 +1,7 @@
 import { ImageResponse } from "@vercel/og"
 import { readFileSync } from "fs"
 import { join } from "path"
+import sharp from "sharp"
 
 export const getOgpImageResponse = async (params: {
   title: string
@@ -13,7 +14,7 @@ export const getOgpImageResponse = async (params: {
   const fontPath = join(process.cwd(), "assets", "NotoSansJP-Bold.ttf")
   const fontData = readFileSync(fontPath)
 
-  return new ImageResponse(
+  const pngImage = await new ImageResponse(
     (
       <div
         lang="ja-JP"
@@ -62,5 +63,16 @@ export const getOgpImageResponse = async (params: {
         },
       ],
     },
-  )
+  ).arrayBuffer()
+
+  const webpImage = await sharp(Buffer.from(pngImage))
+    .webp({ quality: 70 })
+    .toBuffer()
+
+  return new Response(webpImage, {
+    headers: {
+      "Content-Type": "image/webp",
+      "Cache-Control": "public, max-age=31536000", // キャッシュ設定(1年間)
+    },
+  })
 }
