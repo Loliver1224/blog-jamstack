@@ -12,6 +12,13 @@ export default defineConfig({
     }),
     tailwind(),
   ],
+  vite: {
+    resolve: {
+      alias: {
+        "@": "/src",
+      },
+    },
+  },
   image: {
     domains: ["images.microcms-assets.io"],
   },
