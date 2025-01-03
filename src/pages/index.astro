@@ -4,32 +4,42 @@ import Ad from "@/components/Ad.astro"
 import { getAllArticles } from "@/lib/client"
 import ArticleCard from "@/components/ArticleCard.astro"
 
-const articlesApiData = await getAllArticles({
+const latestArticles = await getAllArticles({
   limit: 3,
   fields: ["id", "eyecatch", "title", "publishedAt", "categories"],
   orders: "-publishedAt",
+})
+
+const pickUpArticles = await getAllArticles({
+  fields: ["id", "eyecatch", "title", "publishedAt", "categories"],
+  // ピックアップしたい記事のIDをハードコーディング
+  ids: "usage-own-latex-style,kusodeka-paren,daily-necessities-recommend-list",
 })
 ---
 
 <Layout>
   <main>
-    <h2 class="text-2xl font-bold mb-4">新着記事</h2>
+    <h2 class="text-2xl font-bold mb-4">Latests</h2>
     <div
       class="flex flex-row flex-wrap gap-6 justify-between max-[1304px]:justify-around"
     >
       {
-        articlesApiData.contents.map((content) => (
+        latestArticles.contents.map((content) => (
           <ArticleCard content={content} />
         ))
       }
     </div>
     <Ad />
 
-    <h2 class="text-2xl font-bold my-4">人気記事</h2>
+    <h2 class="text-2xl font-bold my-4">Pick Up</h2>
     <div
-      class="flex flex-row flex-wrap gap-6 justify-start max-md:justify-around"
+      class="flex flex-row flex-wrap gap-6 justify-between max-[1304px]:justify-around"
     >
-      開発中
+      {
+        pickUpArticles.contents.map((content) => (
+          <ArticleCard content={content} />
+        ))
+      }
     </div>
   </main>
 </Layout>
