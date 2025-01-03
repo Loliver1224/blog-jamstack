@@ -311,6 +311,7 @@ pre {
   margin-top: 16px;
   margin-bottom: 0px;
   border-radius: 5px;
+  padding: 1rem;
 }
 
 div[data-filename] {
@@ -419,7 +420,7 @@ article ul {
   @apply mb-4;
 }
 
-article code {
+article code:not(pre code) {
   background: rgba(222, 223, 224, 0.15);
   border: 1px solid rgba(222, 223, 224, 0.25);
   border-radius: 3px;

@@ -1,16 +1,22 @@
 ---
 import type { GetStaticPathsOptions } from "astro"
-import { Icon } from "astro-icon"
 
 import Layout from "@/layouts/Layout.astro"
-import Eyecatch from "@/components/Eyecatch.astro"
 import { getAllArticlesDetail } from "@/lib/client"
 import type { ArticleApiSchema } from "@/types/api"
 import Ad from "@/components/Ad.astro"
+import ArticleCard from "@/components/ArticleCard.astro"
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const articlesApiData = await getAllArticlesDetail({
-    fields: ["id", "eyecatch", "title", "publishedAt"],
+    fields: [
+      "id",
+      "eyecatch",
+      "title",
+      "publishedAt",
+      "categories",
+      "subcategories",
+    ],
     orders: "-publishedAt",
   })
   return paginate(articlesApiData, { pageSize: 6 })
@@ -71,20 +77,7 @@ if (page.url.next) {
     <div class="flex flex-row flex-wrap gap-6 justify-around">
       {
         page.data.map((content: ArticleApiSchema) => (
-          <div class="card w-72">
-            <a href={"/archive/" + content.id}>
-              <Eyecatch image={content.eyecatch?.url} />
-              <div class="p-5">
-                <div class="mb-2 text-xl font-bold tracking-tight">
-                  {content.title}
-                </div>
-                <div class="flex flex-row items-center">
-                  <Icon name="mdi:clock-outline" />
-                  {content.publishedAt?.split("T")[0] || ""}
-                </div>
-              </div>
-            </a>
-          </div>
+          <ArticleCard content={content} />
         ))
       }
     </div>
