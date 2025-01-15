@@ -54,7 +54,7 @@ const categoryDetail = await getCategoryDetail(categoryId)
     <PaginationButton
       length={page.lastPage}
       currentPage={page.currentPage}
-      pageRoute=`categories/${categoryId}`
+      pageRoute={`categories/${categoryId}`}
       prevUrl={page.url.prev}
       nextUrl={page.url.next}
     />
