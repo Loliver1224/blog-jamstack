@@ -11,7 +11,7 @@ const { content } = Astro.props
 
 <div class="card w-72">
   <a class="card-link" href={"/archive/" + content.id}>
-    <Eyecatch id={content.id} />
+    <Eyecatch id={content.id} title={content.title} />
   </a>
   <div class="card-text p-4">
     <div class="text-sm mb-2">
