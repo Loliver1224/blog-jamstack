@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets"
 
-const { id } = Astro.props
+const { id, title } = Astro.props
 ---
 
 <Image
   src={`/archive/ogp/${id}.webp`}
-  alt="サムネイル"
-  width="320"
-  height="180"
-  class="rounded-t-lg object-cover h-40 w-96"
+  alt={title}
+  width="1200"
+  height="630"
+  class="rounded-t-lg object-cover"
 />
