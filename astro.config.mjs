@@ -13,7 +13,7 @@ export default defineConfig({
     icon({
       include: {
         mdi: ["magnify", "clock-outline"],
-        "fa-brands": ["twitter", "blogger", "github"],
+        "fa-brands": ["twitter", "blogger", "github", "linkedin-in"],
         "simple-icons": ["feedly"],
       },
     }),
