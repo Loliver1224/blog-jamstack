@@ -291,13 +291,6 @@ nav li > a {
   display: block;
 }
 
-aside h3 {
-  padding: 12px;
-  margin-bottom: 16px;
-  @apply text-lg;
-  @apply font-bold;
-}
-
 .sidebar {
   @apply bg-white;
 }
