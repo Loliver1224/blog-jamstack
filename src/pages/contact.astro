@@ -1,17 +1,18 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 
-const title = "Contact"
+const title = "お問い合わせ"
 ---
 
 <style>
+  @reference "tailwindcss";
   .form-label {
     display: block;
   }
   .form-input {
     @apply border;
     @apply border-indigo-600;
-    @apply rounded;
+    @apply rounded-sm;
     @apply w-1/2;
     @apply text-xl;
     @apply p-2;
@@ -66,7 +67,7 @@ const title = "Contact"
           <input
             type="submit"
             value="送信"
-            class="bg-indigo-600 text-white py-2 px-4 rounded"
+            class="bg-indigo-600 text-white py-2 px-4 rounded-sm"
           />
         </p>
       </form>
