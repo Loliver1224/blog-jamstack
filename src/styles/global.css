@@ -66,9 +66,8 @@ blockquote {
 	font-style: italic;
 } */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@reference "tailwindcss";
 
 /** --- Cocoon互換用定義 --- */
 .bold {
@@ -251,7 +250,7 @@ blockquote {
   @apply border;
   @apply border-gray-200;
   @apply rounded-lg;
-  @apply shadow;
+  @apply shadow-sm;
 }
 
 /* 入れ子のリンク */
@@ -291,13 +290,6 @@ nav li:hover {
 /** リンク押下範囲を親要素分に広げる */
 nav li > a {
   display: block;
-}
-
-aside h3 {
-  padding: 12px;
-  margin-bottom: 16px;
-  @apply text-lg;
-  @apply font-bold;
 }
 
 .sidebar {
@@ -356,6 +348,10 @@ div[data-filename] > pre {
 }
 
 /** --- 記事本文スタイル --- */
+article {
+  font-size: 17px;
+}
+
 article h1,
 article h2,
 article h3,

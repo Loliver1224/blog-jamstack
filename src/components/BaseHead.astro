@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions"
+import { ClientRouter } from "astro:transitions"
 
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
@@ -28,7 +28,7 @@ const slicedDescription = description
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
-<ViewTransitions />
+<ClientRouter />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

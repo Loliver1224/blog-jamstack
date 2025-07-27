@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets"
-import { Icon } from "astro-icon"
+import { Icon } from "astro-icon/components"
 import avatarImg from "@/images/avatar.png"
 import Ad from "@/components/Ad.astro"
 ---
@@ -12,8 +12,10 @@ import Ad from "@/components/Ad.astro"
 </style>
 
 <aside>
-  <h3 class="text-xl border-b-2 border-indigo-600 mt-0 pt-0">Profile</h3>
-  <div class="text-center border border-indigo-600 rounded p-5">
+  <h3 class="text-xl font-bold border-b-2 border-indigo-600 mb-4 pb-3">
+    PROFILE
+  </h3>
+  <div class="text-center border border-indigo-600 rounded-sm p-5">
     <figure class="mx-auto w-max">
       <Image
         src={avatarImg}
@@ -29,35 +31,46 @@ import Ad from "@/components/Ad.astro"
         <p class="text-left mb-2">
           熊本の高専卒
           <br />
-           毎週金曜はやる気・元気・無敵になる涼風青葉
+          毎週金曜はやる気・元気・無敵になる涼風青葉
           <br />
-           ブログ活動もアイカツ！
+          ブログ活動もアイカツ！
         </p>
       </div>
       <div class="flex justify-center gap-2">
         <a
           href="https://x.com/uni9k"
-          class="border rounded border-indigo-600 p-0.5"
+          hreflang="Twitter"
+          class="border rounded-sm border-indigo-600 p-0.5"
         >
-          <Icon name="fa-brands:twitter" />
+          <Icon name="fa-brands:twitter" class="text-indigo-600" />
         </a>
         <a
           href="https://loliver.hatenablog.jp/"
-          class="border rounded border-indigo-600 p-0.5"
+          hreflang="旧ブログ(はてなブログ)"
+          class="border rounded-sm border-indigo-600 p-0.5"
         >
-          <Icon name="fa-brands:blogger" />
+          <Icon name="fa-brands:blogger" class="text-indigo-600" />
         </a>
         <a
           href="https://github.com/Loliver1224"
-          class="border rounded border-indigo-600 p-0.5"
+          hreflang="GitHub"
+          class="border rounded-sm border-indigo-600 p-0.5"
         >
-          <Icon name="fa-brands:github" />
+          <Icon name="fa-brands:github" class="text-indigo-600" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/u9k/"
+          hreflang="LinkedIn"
+          class="border rounded-sm border-indigo-600 p-0.5"
+        >
+          <Icon name="fa-brands:linkedin-in" class="text-indigo-600" />
         </a>
         <a
           href="https://feedly.com/i/discover/sources/search/feed/https%3A%2F%2Fblog.loliver.net"
-          class="border rounded border-indigo-600 p-0.5"
+          hreflang="Feedly"
+          class="border rounded-sm border-indigo-600 p-0.5"
         >
-          <Icon name="simple-icons:feedly" />
+          <Icon name="simple-icons:feedly" class="text-indigo-600" />
         </a>
       </div>
     </div>
