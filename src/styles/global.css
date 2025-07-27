@@ -66,9 +66,7 @@ blockquote {
 	font-style: italic;
 } */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /** --- Cocoon互換用定義 --- */
 .bold {
@@ -251,7 +249,7 @@ blockquote {
   @apply border;
   @apply border-gray-200;
   @apply rounded-lg;
-  @apply shadow;
+  @apply shadow-sm;
 }
 
 /* 入れ子のリンク */
