@@ -67,6 +67,7 @@ blockquote {
 } */
 
 @import "tailwindcss";
+@reference "tailwindcss";
 
 /** --- Cocoon互換用定義 --- */
 .bold {
