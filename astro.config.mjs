@@ -2,26 +2,24 @@ import { defineConfig } from "astro/config"
 import sitemap from "@astrojs/sitemap"
 import tailwind from "@astrojs/tailwind"
 
+import icon from "astro-icon"
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.loliver.net",
   integrations: [
-    sitemap({
-      changefreq: "daily",
-      priority: 0.7,
-    }),
+    sitemap({ changefreq: "daily", priority: 0.7 }),
     tailwind(),
-  ],
-  vite: {
-    resolve: {
-      alias: {
-        "@": "/src",
+    icon({
+      include: {
+        mdi: ["magnify", "clock-outline"],
+        "fa-brands": ["twitter", "blogger", "github"],
+        "simple-icons": ["feedly"],
       },
-    },
-  },
-  image: {
-    domains: ["images.microcms-assets.io"],
-  },
+    }),
+  ],
+  vite: { resolve: { alias: { "@": "/src" } } },
+  image: { domains: ["images.microcms-assets.io"] },
   redirects: {
     "/2020/03/29/python-ceil_with_divfloor_operator":
       "/archive/python-ceil_with_divfloor_operator",

@@ -356,6 +356,10 @@ div[data-filename] > pre {
 }
 
 /** --- 記事本文スタイル --- */
+article {
+  font-size: 17px;
+}
+
 article h1,
 article h2,
 article h3,
