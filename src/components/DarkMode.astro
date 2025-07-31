@@ -2,7 +2,7 @@
 // cf. https://github.com/markteekman/accessible-astro-components/blob/main/DarkMode.astro
 ---
 
-<button class="darkmode-toggle p-1"></button>
+<button aria-label="テーマ切り替え" class="darkmode-toggle p-1"></button>
 
 <script is:inline>
   let darkMode = localStorage.getItem("darkMode")
