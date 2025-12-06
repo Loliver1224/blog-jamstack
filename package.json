@@ -12,8 +12,8 @@
     "ncu:update": "ncu -u -i"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "3.4.1",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "3.6.0",
     "@fontsource-variable/noto-sans-jp": "^5.2.6",
     "@fontsource/turret-road": "^5.2.6",
     "@iconify-json/fa-brands": "^1.2.1",
@@ -24,7 +24,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vercel/og": "^0.8.5",
-    "astro": "^5.12.3",
+    "astro": "^5.16.4",
     "astro-icon": "^1.1.5",
     "cheerio": "^1.1.2",
     "microcms-js-sdk": "^3.2.0",
