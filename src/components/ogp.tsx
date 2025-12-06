@@ -14,6 +14,19 @@ export const getOgpImageResponse = async (params: {
   const fontPath = join(process.cwd(), "assets", "NotoSansJP-Bold.ttf")
   const fontData = readFileSync(fontPath)
 
+  const title = params.title ?? ""
+
+  // 動的にフォントサイズを決定(長いタイトルは縮小する)
+  const baseFontSize = 64
+  const fontSize = (() => {
+    if (title.length > 40) {
+      const excess = title.length - 40
+      return Math.max(36, Math.round(baseFontSize - excess * 0.6))
+    }
+    return baseFontSize
+  })()
+  const fontSizePx = `${fontSize}px`
+
   const pngImage = await new ImageResponse(
     (
       <div
@@ -34,21 +47,28 @@ export const getOgpImageResponse = async (params: {
           style={{
             display: "flex",
             height: "100%",
-            width: "100%",
-            padding: "64px",
+            margin: "0 auto",
+            padding: "64px 48px",
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
             color: "#004aad",
             fontFamily: '"NotoSansJP", sans-serif',
-            fontSize: "64px",
+            fontSize: fontSizePx,
+            lineHeight: 1.05,
             fontWeight: "bold",
             // サイズ違いのshadowを重ねて全方向へのshadowを表現
             textShadow:
               "0 0 1px #fff, 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 16px #fff",
+            // 長い単語でも折り返す
+            overflowWrap: "anywhere",
+            wordBreak: "break-word",
+            whiteSpace: "normal",
+            maxWidth: "1100px",
+            boxSizing: "border-box",
           }}
         >
-          {params.title}
+          {title}
         </div>
       </div>
     ),
@@ -69,7 +89,7 @@ export const getOgpImageResponse = async (params: {
     .webp({ quality: 70 })
     .toBuffer()
 
-  return new Response(webpImage, {
+  return new Response(new Uint8Array(webpImage), {
     headers: {
       "Content-Type": "image/webp",
       "Cache-Control": "public, max-age=31536000", // キャッシュ設定(1年間)

@@ -310,6 +310,15 @@ nav li > a {
   @apply text-white;
 }
 
+.darkmode article h1,
+.darkmode article h2,
+.darkmode article h3,
+.darkmode article h4,
+.darkmode article h5,
+.darkmode article h6 {
+  background: #3b3b3b;
+}
+
 /** --- アイコンスタイル --- */
 [astro-icon] {
   height: 16px;
