@@ -12,7 +12,7 @@ export default defineConfig({
     sitemap({ changefreq: "daily", priority: 0.7 }),
     icon({
       include: {
-        mdi: ["magnify", "clock-outline"],
+        mdi: ["magnify"],
         "fa-brands": ["twitter", "blogger", "github", "linkedin-in"],
         "simple-icons": ["feedly"],
       },
