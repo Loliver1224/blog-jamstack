@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets"
 
-const { id, title } = Astro.props
+const { id, title, image } = Astro.props
 ---
 
 <Image
-  src={`/archive/ogp/${id}.webp`}
+  src={image || `/archive/ogp/${id}.webp`}
   alt={title}
   width="1200"
   height="630"

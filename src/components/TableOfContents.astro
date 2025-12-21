@@ -1,0 +1,120 @@
+---
+import { load } from "cheerio"
+
+interface Props {
+  content: string
+}
+
+const { content } = Astro.props
+
+// --- 目次生成 ---
+interface TocEntry {
+  id: string
+  text: string
+  tag: string
+}
+
+interface TocItem {
+  id: string
+  text: string
+  tag: string
+  children?: TocItem[]
+}
+
+const cheerioDom = load(content)
+const headings = cheerioDom("h2, h3").toArray()
+const toc: TocEntry[] = headings.map((data) => ({
+  id: data.attribs.id,
+  text: cheerioDom(data).text(),
+  tag: data.tagName,
+}))
+
+function buildNestedToc(items: TocEntry[]): TocItem[] {
+  const result: TocItem[] = []
+  let currentH2: TocItem | null = null
+
+  for (const item of items) {
+    if (item.tag === "h2") {
+      currentH2 = {
+        ...item,
+        children: [],
+      }
+      result.push(currentH2)
+    } else if (item.tag === "h3" && currentH2) {
+      currentH2.children!.push(item)
+    }
+  }
+
+  return result
+}
+
+const nestedToc = buildNestedToc(toc)
+---
+
+<nav class="rounded-md">
+  <!-- <nav class="toc"> -->
+  <details open>
+    <summary class="text-xl font-bold">目次</summary>
+    <ul class="toc-list">
+      {
+        nestedToc.map((item) => (
+          <li class={`toc-item ${item.tag}`}>
+            <a href={`#${item.id}`} class="toc-link">
+              {item.text}
+            </a>
+            {item.children && item.children.length > 0 && (
+              <ul class="toc-sublist">
+                {item.children.map((child: TocItem) => (
+                  <li class={`toc-item ${child.tag}`}>
+                    <a href={`#${child.id}`} class="toc-link">
+                      {child.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+</nav>
+
+<style>
+  @import "tailwindcss";
+  @reference "tailwindcss";
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-sublist {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
+  .toc-item.h2 {
+    font-weight: bold;
+    margin: 10px 0;
+  }
+
+  .toc-item.h3 {
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+  .toc-link {
+    @apply text-gray-500;
+  }
+  .toc-link:hover {
+    @apply text-indigo-600;
+  }
+
+  /** リンク押下範囲を親要素分に広げる */
+  .toc-list li > a {
+    display: block;
+  }
+</style>
