@@ -188,6 +188,16 @@ blockquote {
   border-bottom: 12px solid transparent;
 }
 
+.iframely-embed {
+  @apply mx-auto;
+  width: 60%;
+}
+@media (width < 64rem) {
+  .iframely-embed {
+    width: 80%;
+  }
+}
+
 /** --------- */
 
 .bg-gradient {
