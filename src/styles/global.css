@@ -303,19 +303,19 @@ blockquote {
   @apply border-gray-800;
 }
 
-nav li {
+.navigation li {
   transition:
     color 0.2s,
     background-color 0.2s;
 }
 
-nav li:hover {
+.navigation li:hover {
   @apply text-white;
   @apply bg-indigo-600;
 }
 
 /** リンク押下範囲を親要素分に広げる */
-nav li > a {
+.navigation li > a {
   display: block;
 }
 

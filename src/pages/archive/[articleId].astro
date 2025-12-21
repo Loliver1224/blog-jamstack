@@ -2,10 +2,10 @@
 import Layout from "@/layouts/Layout.astro"
 import { getAllArticlesDetail, getArticleDetail } from "@/lib/client"
 
-import { Icon } from "astro-icon/components"
 import { applySyntaxHighlighting } from "@/utils/highlight"
 import { applyWrapTableElement } from "@/utils/wrap_table"
 import Ad from "@/components/Ad.astro"
+import TableOfContents from "@/components/TableOfContents.astro"
 
 export async function getStaticPaths() {
   const response = await getAllArticlesDetail({ fields: ["id"] })
@@ -42,11 +42,15 @@ if (articleDetail.context) {
 >
   <article data-pagefind-body>
     <h1>{articleDetail.title}</h1>
-    <div class="flex flex-row-reverse items-center">
-      {articleDetail.publishedAt?.split("T")[0] || ""}
-      <Icon name="mdi:clock-outline" />
+    <div class="flex flex-row-reverse items-center text-gray-600 mt-2">
+      {
+        articleDetail.updatedAt === articleDetail.publishedAt
+          ? "published@"
+          : "updated@"
+      }{articleDetail.updatedAt?.split("T")[0] || ""}
     </div>
-    <hr class="my-4 bg-indigo-600 h-[2px]" />
+    <TableOfContents content={articleContent} />
+    <hr class="my-2 bg-indigo-600 h-[2px]" />
     <div set:html={articleContent} />
     <Ad />
   </article>
