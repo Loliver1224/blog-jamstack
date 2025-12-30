@@ -437,6 +437,7 @@ article h3 {
 }
 
 article h4 {
+  @apply pl-4;
   @apply border-y-2;
 }
 
@@ -465,10 +466,14 @@ article .information-box {
   @apply mb-[1.4rem];
 }
 
-article ul {
-  @apply list-disc;
+article ul,
+article ol {
+  list-style-type: revert;
   @apply pl-6;
   @apply mb-4;
+}
+article li {
+  @apply my-1;
 }
 
 article code:not(pre code) {
@@ -499,16 +504,6 @@ article tr:nth-child(even) {
 article tr:nth-child(odd) {
   background: #efefef;
   border: 1px solid #222;
-}
-
-article ol {
-  list-style: decimal inside;
-}
-article ul {
-  list-style-type: disc inside;
-}
-article li {
-  @apply my-1;
 }
 
 blockquote {
