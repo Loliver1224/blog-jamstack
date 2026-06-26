@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: true
+overrides:
+  "@vercel/og>sharp": 0.35.2
+minimumReleaseAge: 1440
