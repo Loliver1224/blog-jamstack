@@ -2,11 +2,14 @@
 // cf. https://github.com/markteekman/accessible-astro-components/blob/main/DarkMode.astro
 ---
 
-<button class="darkmode-toggle p-1"></button>
+<button aria-label="Toggle dark mode" class="darkmode-toggle p-1"></button>
 
-<script is:inline>
+<script>
   let darkMode = localStorage.getItem("darkMode")
   const darkModeToggleElm = document.querySelector(".darkmode-toggle")
+  if (!darkModeToggleElm) {
+    throw new Error("Dark mode toggle element not found")
+  }
 
   const enableDarkMode = () => {
     document.body.classList.add("darkmode")
